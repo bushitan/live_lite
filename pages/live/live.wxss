@@ -1,0 +1,24 @@
+/* pages/mode/mode.wxss */
+page{
+}
+
+.live_player{
+    width: 750rpx;
+    height: calc(100vh - 60px)
+}
+
+button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.switch{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.switch label{
+    margin-right:10px;
+     
+}

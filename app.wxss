@@ -1,0 +1,4 @@
+/**app.wxss**/
+@import 'xx.wxss';
+@import 'xx_font.wxss';
+@import 'xx_mp.wxss';

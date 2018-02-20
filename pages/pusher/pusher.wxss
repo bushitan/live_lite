@@ -1,0 +1,16 @@
+/* pages/player/player.wxss */
+
+.live_pusher{
+    width: 750rpx;
+    height: 250px;
+}
+
+.switch{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.switch label{
+    margin-right:10px;
+     
+}

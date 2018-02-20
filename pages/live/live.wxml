@@ -1,0 +1,24 @@
+<!--pages/mode/mode.wxml-->
+ <!-- <live-player src="rtmp://live.12xiong.top/AppName/StreamName"  class="live_player"
+   mode="SD"  
+   orientation="{{orientation}}"
+   object-fit="fillCrop"
+   autoplay bindstatechange="statechangePlayer"    binderror="error"  />
+
+   <view class='xx_m_lr15  switch'>
+    <label class='xx_f_10'>横/竖屏</label>
+     <switch bindchange="switch2Change"/>
+   </view> -->
+  
+ <im></im>  
+
+  <!-- <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
+  class="live_pusher"
+  mode="RTC" 
+  autopush bindstatechange="statechange"
+  enable-camera="true"
+  autopush="true"
+ /> -->
+ <input bindinput="imInput"></input>
+  <button catchtap='sendMsg'>发送信息</button> 
+<button size='mini' type='primary' catchtap='toPusher' >录制</button>

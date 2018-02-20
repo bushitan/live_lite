@@ -1,0 +1,9 @@
+<!--pages/article/article.wxml-->
+<view class="tab">
+    <tab     list="{{tagList}}"    key="tag_name"
+    unselectcolor="#888" selectcolor="#efa234"
+    bind:click="clickTag" ></tab>
+</view>
+
+<cover_news>
+</cover_news>

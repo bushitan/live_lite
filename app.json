@@ -1,0 +1,18 @@
+{
+    "pages":[
+        "pages/live/live",
+        "pages/index/index",
+        "pages/cover/cover",
+        "pages/article/article",
+        "pages/ztest/ztest",
+        "pages/loading/loading",
+        "pages/pusher/pusher",
+        "pages/logs/logs"
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "牛鬼TV",
+        "navigationBarTextStyle":"black"
+    }
+}

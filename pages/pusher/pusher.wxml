@@ -1,0 +1,14 @@
+<!--pages/player/player.wxml-->
+  <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
+  class="live_pusher"
+  mode="{{mode}}" 
+  autopush bindstatechange="statechange"
+  enable-camera="true"
+  autopush="true"
+ />
+
+   <view class='xx_m_lr15  switch'>
+    <label class='xx_f_10'>横/竖屏</label>
+     <switch bindchange="switch2Change"/>
+   </view>
+  
