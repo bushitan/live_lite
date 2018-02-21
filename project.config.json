@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.90",
+	"libVersion": "1.9.91",
 	"appid": "wx76cc2152eea29e91",
-	"projectname": "live_lite",
+	"projectname": "%E7%9B%B4%E6%92%AD",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -27,20 +27,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "ztest",
-					"pathName": "pages/ztest/ztest",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "cover",
-					"pathName": "pages/cover/cover",
-					"query": ""
-				}
-			]
+			"list": []
 		}
 	}
 }
