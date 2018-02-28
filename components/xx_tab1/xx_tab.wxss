@@ -1,0 +1,22 @@
+/* components/xx_tab/xx_tab.wxss */
+.flex{
+    display: flex;
+}
+
+/* tab选择按钮 */
+ .node{
+    padding: 0 7px;
+    margin: 0 2px;
+    border-spacing:5px;
+    white-space:nowrap;
+}
+.content{
+    font-size:11pt ;
+    line-height: 11pt;
+    padding: 11pt 2px;
+}
+
+.select_line{
+    width: 10px;
+    margin: auto;
+} 

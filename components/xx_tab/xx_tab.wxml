@@ -1,15 +1,33 @@
-<!--components/xx_tab/xx_tab.wxml-->
-<scroll-view scroll-x="true" class='scroll-view_tab'>
-    <view class='flex '>
-        <block wx:for="{{list}}" wx:key="item">
-            <view class="node"           
-            style="color: {{selectIndex == index?selectcolor:unselectcolor}} ;"  
-             catchtap="click" data-index="{{index}}">
-                <view class="content  ">
-                    {{item[key]}}
+ 
+ <scroll-view scroll-x="true" class='scroll_box'  wx:if="{{mode==MODE_SCROLL}}">
+    <!-- 时间选择按钮 -->
+    <view class='scroll_content' >
+            <block wx:for="{{list}}" wx:key="index">
+            <view class='tab' catchtap="click" data-index="{{index}}">
+                <view wx:if="{{index == initindex}}"  class="tab__node " 
+                    style="color: {{colorselect}}; border-bottom: 2px {{colorselect}} solid; font-size:{{sizeselect}};line-height: {{sizeselect}};">
+                    {{item.meet_name}} 
                 </view>
-                <view class='select_line' wx:if="{{selectIndex == index}}" style="border-bottom: 2px {{selectIndex == index?selectcolor:unselectcolor}} solid;"></view>
-            </view>
-        </block>
+                <view  wx:else  class="tab__node "
+                    style="color: {{colorunselect}};  font-size:{{sizeunselect}} ;line-height: {{sizeunselect}};">
+                    {{item.meet_name}} 
+                </view>
+            </view>  
+        </block> 
     </view>
 </scroll-view>
+
+<view class='menu' wx:if="{{mode==MODE_MENU}}">
+    <block wx:for="{{list}}">
+        <view class='tab' catchtap="click" data-index="{{index}}">
+            <view wx:if="{{index == initindex}}"  class="tab__node " 
+                style="color: {{colorselect}}; border-bottom: 2px {{colorselect}} solid; font-size:{{sizeselect}};line-height: {{sizeselect}};">
+                {{item.meet_name}} 
+            </view>
+            <view  wx:else  class="tab__node "
+                style="color: {{colorunselect}};  font-size:{{sizeunselect}} ;line-height: {{sizeunselect}};">
+                {{item.meet_name}} 
+            </view>
+        </view>
+    </block>  
+</view>

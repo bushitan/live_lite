@@ -1,0 +1,15 @@
+<!--components/xx_tab/xx_tab.wxml-->
+<scroll-view scroll-x="true" class='scroll-view_tab'>
+    <view class='flex '>
+        <block wx:for="{{list}}" wx:key="item">
+            <view class="node"           
+            style="color: {{selectIndex == index?selectcolor:unselectcolor}} ;"  
+             catchtap="click" data-index="{{index}}">
+                <view class="content  ">
+                    {{item[key]}}
+                </view>
+                <view class='select_line' wx:if="{{selectIndex == index}}" style="border-bottom: 2px {{selectIndex == index?selectcolor:unselectcolor}} solid;"></view>
+            </view>
+        </block>
+    </view>
+</scroll-view>
