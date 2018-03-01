@@ -1,0 +1,7 @@
+{
+    "usingComponents":{
+        "xx-input": "../../components/xx_input/xx_input",
+        "cover": "../../components/xx_cover/xx_cover"
+        
+    }
+}

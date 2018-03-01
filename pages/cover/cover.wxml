@@ -1,9 +1,8 @@
 <!--pages/cover/cover.wxml-->
 <view class="tab">
-    <tab     list="{{tabList}}"    key="tag_name"
-    unselectcolor="#888" selectcolor="#efa234"
-    bind:click="clickTag" ></tab>
+    <tab     list="{{tabList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
+    
 </view>
 
-<cover_news list="{{coverList}}" bind:click="clickCover">
-</cover_news>
+<cover list="{{coverList}}" bind:click="clickCover" mode="cover"></cover>
+<!-- <cover_news list="{{coverList}}" bind:click="clickCover"></cover_news> -->

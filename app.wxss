@@ -2,3 +2,15 @@
 @import 'xx.wxss';
 @import 'xx_font.wxss';
 @import 'xx_mp.wxss';
+
+
+
+page{
+     /* background-color: #f7f7f7;  */
+     /* background-color: #eeeeee;  */
+     background-color: #f9f9f9;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif,Microsoft YaHei;
+    font-family : "Microsoft YaHei";
+    /* letter-spacing:1px; */
+}

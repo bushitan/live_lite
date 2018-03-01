@@ -1,12 +1,13 @@
 {
     "pages":[
-        "pages/cover/cover",
         "pages/live/live",
+        "pages/my/my",
+        "pages/pusher/pusher",
+        "pages/loading/loading",
+        "pages/cover/cover",
         "pages/index/index",
         "pages/article/article",
         "pages/ztest/ztest",
-        "pages/loading/loading",
-        "pages/pusher/pusher",
         "pages/logs/logs"
     ],
     "window":{
@@ -14,5 +15,18 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "牛鬼TV",
         "navigationBarTextStyle":"black"
+    },
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/live/live",
+            "text": "直播"
+        }, {
+            "pagePath": "pages/cover/cover",
+            "text": "专栏"
+        },{
+            "pagePath": "pages/my/my",
+            "text": "报名"
+        }
+        ]
     }
 }

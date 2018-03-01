@@ -15,6 +15,7 @@ var jim
 
 var actionCard
 var GP
+var live
 //静态变量
 // var CARD_LIST = KEY.CARD_LIST
 
@@ -52,31 +53,55 @@ Page({
             GP.setData({ orientation: "vertical" })
     },
 
+    liveFullScreen(){
+        console.log("进入全屏")
+        live.requestFullScreen({
+            success: function (res) {
+                console.log(res)
+            },
+            fail: function (res) {
+                console.log(res)
+            },
+        })
+    },
+    exitFullScreen(){
+        console.log("退出全屏")
+        live.exitFullScreen({
+            success: function (res) {
+                console.log(res)
+            },
+            fail: function (res) {
+                console.log(res)
+            },
+        })
+    },
     onLoad(){
         GP = this
+        // this.LivePlayerContext 
+        live = wx.createLivePlayerContext("live1",this)
+        console.log(a)    
         
         var _userName ="bushitan4"
         var _secret = "123"
  
     },
-    imInput(e){
-        GP.setData({
-            inputValue:e.detail.value
-        })
-        
-    },
+    // imInput(e){
+    //     GP.setData({
+    //         inputValue:e.detail.value
+    //     }) 
+    // },
 
-    sendMsg(){
-        if (APP.globalData.jimIsLogin){
-            APP.globalData.jim.sendChatroomMsg({
-                'target_rid': APP.globalData.jimRoomID,
-                'content': GP.data.inputValue
-            }).onSuccess(function (data, msg) {
-                console.log(data)
-            }).onFail(function (data) {
-            });
-        }
+    // sendMsg(){
+    //     if (APP.globalData.jimIsLogin){
+    //         APP.globalData.jim.sendChatroomMsg({
+    //             'target_rid': APP.globalData.jimRoomID,
+    //             'content': GP.data.inputValue
+    //         }).onSuccess(function (data, msg) {
+    //             console.log(data)
+    //         }).onFail(function (data) {
+    //         });
+    //     }
           
-    },
+    // },
 
 })

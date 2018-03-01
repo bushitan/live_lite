@@ -7,11 +7,11 @@ page{
     height: calc(100vh - 60px)
 }
 
-button{
+/* button{
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
+} */
 
 .switch{
     display: flex;
@@ -21,4 +21,10 @@ button{
 .switch label{
     margin-right:10px;
      
+}
+.cover{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: yellow;
 }

@@ -39,7 +39,7 @@ Component({
             content_type: 0,
             contract_info: '',//弹出框input值
             myDate: '',
-            role: true,
+            role: false,
             img: '../../images/hotapp_01_03.png',
         }, {
             content: '【系统消息】：您的反馈已收到，稍后给您回复',

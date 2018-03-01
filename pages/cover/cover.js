@@ -15,8 +15,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-      tabList: [
+      tabList: ["吃货", "小仁", "小仁"],
+      tabLista: [
           { 'tag_name': "吃播", "tag_id": 1 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
+          { 'tag_name': "小仁专栏", "tag_id": 2 },
           { 'tag_name': "小仁专栏", "tag_id": 2 },
       ],
       coverList:[
@@ -44,12 +53,13 @@ Page({
 
     // 点击tab
     clickTag(e) {
-        var _tag_id = e.detail.tag_id
-        console.log(_tag_id)
-        if (_tag_id == 1)   
-            GP.setData({ coverList: GP.data.coverList1  })
-        else
-            GP.setData({ coverList: GP.data.coverList2 })
+        console.log(e.detail)
+        // var _tag_id = e.detail.tag_id
+        // console.log(_tag_id)
+        // if (_tag_id == 1)   
+        //     GP.setData({ coverList: GP.data.coverList1  })
+        // else
+        //     GP.setData({ coverList: GP.data.coverList2 })
     },  
 
     //点击文章
