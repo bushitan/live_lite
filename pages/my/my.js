@@ -7,13 +7,59 @@ var KEY = require('../../utils/key.js');
 
 Page({
     data: {
-        male: ['男', '女'],
-        area:['北京','广西','天津','广东'],
         userInfo:{},
         lock:false,
+        isSign:false,
+        planList: [{
+            title: "音乐课",
+            summary: "音乐欣赏、表演",
+            des: "钢琴教室",
+            start_time: '9:00',
+            end_time: "10:00",
+        }, {
+            title: "美术课",
+            summary: "水彩画创意",
+            des: "手工教室",
+            start_time: '10:10',
+            end_time: "11:00",
+        },
+        ]
     },
+    toPusher() {
+        wx.navigateTo({
+            url: '/pages/pusher/pusher',
+        })
+    },
+    
+    sign(){
+        var userInfo = GP.data.userInfo
+        if (userInfo.name == "" || userInfo.name == undefined || userInfo.phone == "" || userInfo.phone == undefined) {
+
+            wx.showModal({
+                title: '温馨提示',
+                content: '为了方便我们的客服联系您，请填写完整信息',
+            })
+            return
+        }
+        wx.setStorageSync(KEY.IS_SIGN, true)
+        wx.showModal({
+            title: '报名成功',
+            content: '请预览我们近期的课程表，',
+        })
+        GP.setData({
+            isSign:true
+        })
+    },
+    reSign(){
+        GP.setData({
+            isSign: false
+        })
+    },
+
     onLoad: function (options) {
         GP = this
+
+        GP.setData({ isSign: wx.getStorageSync(KEY.IS_SIGN) == true ? true :false})
         GP.onInit()
     },
 
@@ -39,15 +85,6 @@ Page({
         })
     },
 
-
-    selectMale(e) {
-        var index = e.detail
-        console.log(GP.data.male[index])
-    },
-    selectArea(e){
-        var index = e.detail
-        console.log(GP.data.area[index])
-    },
 
     /**
      *  进入渠道：

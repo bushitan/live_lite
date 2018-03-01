@@ -79,7 +79,7 @@ Page({
         GP = this
         // this.LivePlayerContext 
         live = wx.createLivePlayerContext("live1",this)
-        console.log(a)    
+        // console.log(a)    
         
         var _userName ="bushitan4"
         var _secret = "123"

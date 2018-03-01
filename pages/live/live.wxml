@@ -7,12 +7,15 @@
    object-fit="fillCrop"
    autoplay bindstatechange="statechangePlayer"    binderror="error"  />
 
-   <view class='xx_m_lr15  switch'>
-    <label class='xx_f_10'>横/竖屏</label>
-     <switch bindchange="switch2Change"/>
-     <button size='mini' type='primary' catchtap='toPusher' >录制</button>
-     <button size='mini' catchtap='liveFullScreen' >全屏</button>
-     
+    <view class='xx_m_lr15  switch'>
+        <view>
+            <label class='xx_f_10'>横</label>
+            <switch bindchange="switch2Change"/>
+            <label class='xx_f_10'>竖屏</label>
+        </view>
+        <view>        
+            <button size='mini' catchtap='liveFullScreen' >全屏</button>
+        </view>
    </view> 
      <cover-view class='cover' catchtap='exitFullScreen' > 退出</cover-view>
   

@@ -18,7 +18,7 @@
         <view class='xx_p_t15 xx_p_lr15'>
             <view class='xx_flex' style='margin-left:-10px;'>
                 <view class='point'></view>
-                <view class='xx_f_10 '>当天日程结束</view>
+                <view class='xx_f_10 '>当天课程结束</view>
             </view>
         </view>
     </view> 

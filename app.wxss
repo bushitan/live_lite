@@ -3,8 +3,6 @@
 @import 'xx_font.wxss';
 @import 'xx_mp.wxss';
 
-
-
 page{
      /* background-color: #f7f7f7;  */
      /* background-color: #eeeeee;  */

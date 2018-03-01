@@ -33,6 +33,12 @@
 					"name": "cover",
 					"pathName": "pages/cover/cover",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
 				}
 			]
 		}

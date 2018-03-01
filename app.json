@@ -1,12 +1,12 @@
 {
     "pages":[
         "pages/live/live",
+        "pages/article/article",
         "pages/my/my",
         "pages/pusher/pusher",
         "pages/loading/loading",
         "pages/cover/cover",
         "pages/index/index",
-        "pages/article/article",
         "pages/ztest/ztest",
         "pages/logs/logs"
     ],

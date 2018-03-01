@@ -1,69 +1,78 @@
-// pages/article/article.js
+// pages/article_video/article_video.js
+
+var GP
+var APP = getApp()
+
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      tagList: [
-          { 'tag_name': 21321, "tag_id": 1 },
-          { 'tag_name': '我的频道', "tag_id": 2 },
-          { 'tag_name': 'TV', "tag_id": 2 },
-          { 'tag_name': 21321, "tag_id": 2 },
-          { 'tag_name': 21321, "tag_id": 2 },
-          { 'tag_name': 21321, "tag_id": 2 },
-          { 'tag_name': 21321, "tag_id": 2 },
-      ]
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
-  },
+    onLoad: function (options) {
+        
+        GP = this
+        console.log(options)
+        // var article_id = options.article_id
+        // GP.getArticleContent(article_id)
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    //获取文章内容
+    getArticleContent: function (article_id) {
+        
+        API.Request
+        ({
+            url: API.MEET_ARTICLE,
+            data: {
+                article_id: article_id,
+            },
+            success: function (res) {
+                var object = res.data
+            
+                var _article_dict = object.article_dict
+                //todo  判断style ，传入选择模板名称传入
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+                GP.setMode(_article_dict.style)
+                GP.setData({
+                    article: _article_dict
+                })
+            },
+        })
+        //   wx.request
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+    setMode(style){
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+        var ARTICLE_STYLE_NORMAL = 1,
+        ARTICLE_STYLE_TEXT = 2,
+        ARTICLE_STYLE_AUDIO = 3,
+        ARTICLE_STYLE_VIDEO = 4
+        var _mode
+        if (style == ARTICLE_STYLE_NORMAL)
+            _mode = "normal"
+        if (style == ARTICLE_STYLE_TEXT)
+            _mode = "text"
+        if (style == ARTICLE_STYLE_AUDIO)
+            _mode = "audio"
+        if (style == ARTICLE_STYLE_VIDEO)
+            _mode = "video"
+        GP.setData({
+            mode: _mode
+        })
+    },
+
+
 
   /**
    * 用户点击右上角分享

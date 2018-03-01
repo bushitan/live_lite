@@ -7,4 +7,5 @@ module.exports = {
     USER_INFO: "user_info",
     MODE_SHOW_UPADTE: "mode_show_update",
     FIRST_IN_ADD: "first_in_add",
+    IS_SIGN:"is_sign",
 }

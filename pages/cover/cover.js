@@ -15,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      tabList: ["吃货", "小仁", "小仁"],
+      tabList: ["最新通知", "学习天地"],
       tabLista: [
           { 'tag_name': "吃播", "tag_id": 1 },
           { 'tag_name': "小仁专栏", "tag_id": 2 },
@@ -28,32 +28,33 @@ Page({
           { 'tag_name': "小仁专栏", "tag_id": 2 },
           { 'tag_name': "小仁专栏", "tag_id": 2 },
       ],
-      coverList:[
-          {
-              "cover_url": "",
-              "title": "专栏一",
-              "issue_time":"2018-2-18",
-          },
+      coverList: [
+        [
+            {
+                  "cover_url": "https://mmbiz.qpic.cn/mmbiz_jpg/12YicRfgqg3w17bum5IMTL7icRB8wXXLKfXvoVG5EEBEicyv5dziaXXlfc8qoyNLMIU7b4oG3TgiadgmKApAzZwWsxg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+                  "title": "教育的真谛：“学霸可能最不适应未来社会”",
+                "issue_time": "2018-2-18",
+            },
+           
+        ],
+        [
+            {
+                "cover_url": "https://mmbiz.qpic.cn/mmbiz_jpg/12YicRfgqg3zwc1cTwhxUFZXiclmyUMXia3nEuicTic2MTFvopIzBicgBcB7GDhYgrJesnfz7SdjSRBm0hIsYL48wynw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+                "title": "教育的最大改变是终身学习成为必要",
+                "issue_time": "2018-2-17",
+            },
+        ],
       ],
-      coverList1: [
-          {
-              "cover_url": "",
-              "title": "专栏一",
-              "issue_time": "2018-2-18",
-          },
-      ],
-      coverList2: [
-          {
-              "cover_url": "",
-              "title": "专栏二",
-              "issue_time": "2018-2-11",
-          },
-      ],
+      coverIndex:0,
     },
 
     // 点击tab
     clickTag(e) {
         console.log(e.detail)
+        var index = e.detail
+        GP.setData({
+            coverIndex:index
+        })
         // var _tag_id = e.detail.tag_id
         // console.log(_tag_id)
         // if (_tag_id == 1)   
@@ -63,7 +64,11 @@ Page({
     },  
 
     //点击文章
-    clickCover(e) { },
+    clickCover(e) { 
+        wx.navigateTo({
+            url: '/pages/article/article',
+        })
+    },
 
     onLoad(){
         GP = this

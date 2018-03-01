@@ -8,35 +8,25 @@
                 <view class="xx_text__title">{{userInfo.nick_name}}</view> 
             <!-- <view class="xx_text__des">ID：{{user_id}}</view> -->
     </view>
-    <!-- <view class="xx_menu__node_descrtion" catchtap='toRosterSelf'>
-        <image   class="image_icon" src="{{icon_roster}}" style="margin-right:5px ;"  ></image>
-        我的名片
-    </view> -->
+     <view class="xx_menu__node_descrtion" catchtap='toRosterSelf'>
+        <!-- <image   class="image_icon" src="{{icon_roster}}" style="margin-right:5px ;"  ></image> -->
+        <button size='mini' catchtap='toPusher'>录制</button>
+    </view> 
     </view>
 </view> 
 
-
-<mark color="#187bbf" title="入场券"></mark>
 <view style='height:10px;'></view>
-<!-- <block wx:for="{{signList}}">
-    <ticket title="{{item.meet_name}}" status="已付款（SN:{{item.sign_id}}）" name="{{item.cost_name}}"></ticket>
-</block> -->
- <!-- <mark color="#187bbf" title="请完善参会人员信息"></mark> -->
-<view class="xx_input ">
-    <xx-input name="姓名" placeholder="请输入姓名" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
-        <view class='xx_line__gray'></view> 
-    <!-- <xx-input mode="select" array="{{male}}"  bindchange="selectMale" name="性别" placeholder="请选择性别"></xx-input>
-        <view class='xx_line__gray'></view> 
-    <xx-input  mode="select" array="{{area}}" index="2"  bindchange="selectArea" name="地区" placeholder="请选择地区"></xx-input>
-        <view class='xx_line__gray'></view>  -->
-    <xx-input name="企业名称" placeholder="请填写企业名称" bindinput='inputCompany' value='{{userInfo.company}}'></xx-input>
-        <view class='xx_line__gray'></view> 
-    <!-- <xx-input name="职务" placeholder="请填写职务"></xx-input>
-        <view class='xx_line__gray'></view>  -->
-    <xx-input name="手机" placeholder="请填写手机号码" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
+<view wx:if="{{isSign}}">
+    <cover mode="agenda" list="{{ planList }}"></cover>
+    <view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="reSign">更改报名信息</view>
+    <view style='height:30px;'></view>
 </view>
-
-<view class="xx_button__hx mp" hover-class='xx_button__hx_press' bindtap="updateInfo">报名</view>
-<view style='height:30px;'></view> 
-
-<cover mode="agenda" list="{{[1,2,3]}}"></cover>
+<view wx:else>
+    <view class="xx_input ">
+        <xx-input name="姓名" placeholder="请输入姓名" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+            <view class='xx_line__gray'></view> 
+        <xx-input name="手机" placeholder="请填写手机号码" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
+    </view>
+    <view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="sign">报名</view>
+    <view style='height:30px;'></view>
+</view>

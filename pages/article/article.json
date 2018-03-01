@@ -1,8 +1,5 @@
 {
     "usingComponents": {
-        "userItem": "../../components/userItem/userItem",
-        "dialog": "../../components/dialog/dialog",
-        "tab": "../../components/xx_tab/xx_tab",
-        "cover_news": "../../components/xx_cover_news/xx_cover_news"
+        "article": "../../components/xx_article/xx_article"
     }
 }

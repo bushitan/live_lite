@@ -1,1 +1,5 @@
 /* pages/cover/cover.wxss */
+
+.tab{
+    background-color: #fff;
+}

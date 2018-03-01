@@ -4,7 +4,7 @@ page{
 
 .live_player{
     width: 750rpx;
-    height: calc(100vh - 60px)
+    height: calc(100vh - 50px)
 }
 
 /* button{
@@ -15,8 +15,9 @@ page{
 
 .switch{
     display: flex;
-    /* justify-content: center; */
+     justify-content: space-around; 
     align-items: center;
+    margin-top: 5px;
 }
 .switch label{
     margin-right:10px;
