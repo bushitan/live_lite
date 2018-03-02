@@ -1,6 +1,10 @@
 // pages/cover/cover.js
 var GP
 
+var APP = getApp()
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+
 var JMessage = require('../../utils/jmessage-wxapplet-sdk-1.4.0.min.js')
 var MD5 = require('../../utils/md5.js')
 var RANDOM = require('../../utils/random.js')
@@ -15,7 +19,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      tabList: ["最新通知", "学习天地"],
+      currentTabList: ["最新通知", "学习天地"],
       tabLista: [
           { 'tag_name': "吃播", "tag_id": 1 },
           { 'tag_name': "小仁专栏", "tag_id": 2 },
@@ -52,15 +56,17 @@ Page({
     clickTag(e) {
         console.log(e.detail)
         var index = e.detail
+
+        // GP.getCoverList(GP.data.tagList[index].tag_id)
         GP.setData({
             coverIndex:index
         })
-        // var _tag_id = e.detail.tag_id
-        // console.log(_tag_id)
-        // if (_tag_id == 1)   
-        //     GP.setData({ coverList: GP.data.coverList1  })
-        // else
-        //     GP.setData({ coverList: GP.data.coverList2 })
+        var _tag_id = e.detail.tag_id
+        console.log(_tag_id)
+        if (_tag_id == 1)   
+            GP.setData({ coverList: GP.data.coverList1  })
+        else
+            GP.setData({ coverList: GP.data.coverList2 })
     },  
 
     //点击文章
@@ -70,30 +76,67 @@ Page({
         })
     },
 
+    onInit(){
+        API.Request({
+            url: API.COVER_TAG_GET_LIST,
+            success:function(res){
+                var _tab_list = []
+                for (var i = 0; i < res.data.list_tag.length ; i++)
+                    _tab_list.push(res.data.list_tag[i].name)
+                
+                GP.setData({
+                    currentTabList:_tab_list,
+                    tagList: res.data.list_tag
+                })
+                GP.getCoverList(res.data.list_tag[0].tag_id)
+            }
+        })
+    },
+
+    getCoverList(tag_id){
+        API.Request({
+            url: API.COVER_NEWS_GET_LIST,
+            data:{
+                tag_id:tag_id,
+            },
+            success: function (res) {
+                GP.setData({
+                    coverList: res.data.list_cover,
+                })
+            }
+        })
+    },
+
+    
     onLoad(){
         GP = this
-        return
-        var appKey = "12101be04a3f9c65a1cd24b3"
-        var Key = "f803e0a4a08c48a31456b4ed"
-        var timestamp = new Date().getTime()
-        var _random = RANDOM.Get32()
+        // GP.onInit()
 
-        var signature = MD5.hex_md5("appkey=" + appKey + "&timestamp=" + timestamp + "&random_str=" + _random+"&key=" + Key+"")
-        console.log(signature)
-        jim.init({
-            "appkey": appKey,
-            "random_str": _random,
-            "signature": signature,
-            "timestamp": timestamp
-        }).onSuccess(function (data) {
-            console.log(data)
-            GP.register()
 
-            jim.isInit()
-            jim.isConnect()
-        }).onFail(function (data) {
-            //TODO
-        });  
+
+
+
+        // var appKey = "12101be04a3f9c65a1cd24b3"
+        // var Key = "f803e0a4a08c48a31456b4ed"
+        // var timestamp = new Date().getTime()
+        // var _random = RANDOM.Get32()
+
+        // var signature = MD5.hex_md5("appkey=" + appKey + "&timestamp=" + timestamp + "&random_str=" + _random+"&key=" + Key+"")
+        // console.log(signature)
+        // jim.init({
+        //     "appkey": appKey,
+        //     "random_str": _random,
+        //     "signature": signature,
+        //     "timestamp": timestamp
+        // }).onSuccess(function (data) {
+        //     console.log(data)
+        //     GP.register()
+
+        //     jim.isInit()
+        //     jim.isConnect()
+        // }).onFail(function (data) {
+        //     //TODO
+        // });  
     },
 
     register(){
