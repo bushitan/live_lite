@@ -4,4 +4,7 @@
 </view>
 
 <cover list="{{coverList[coverIndex]}}" bind:click="clickCover" mode="cover"></cover>
+
+
+<sprite></sprite>
 <!-- <cover_news list="{{coverList}}" bind:click="clickCover"></cover_news> -->

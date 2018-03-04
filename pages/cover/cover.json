@@ -2,6 +2,7 @@
     "usingComponents": {
         "tab": "../../components/xx_tab/xx_tab",
         "cover": "../../components/xx_cover/xx_cover",
+        "sprite": "../../components/xx_sprite/xx_sprite",
         "cover_news": "../../components/xx_cover_news/xx_cover_news"
     }
 }
