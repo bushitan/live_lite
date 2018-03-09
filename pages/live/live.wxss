@@ -2,10 +2,14 @@
 page{
 }
 
-.live_player{
+.live{
     width: 750rpx;
-    height: calc(100vh - 50px)
+    height: 400rpx;
 }
+.live live-player{
+    width: 750rpx;
+    height: 100%;
+} 
 
 /* button{
     position: fixed;
@@ -28,4 +32,11 @@ page{
     top: 20px;
     right: 20px;
     color: yellow;
+}
+.cover_img{
+    width: 32px;height: 32px;
+}
+
+.message{
+    color: #fff;
 }

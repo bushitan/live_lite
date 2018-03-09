@@ -1,5 +1,7 @@
 {
     "usingComponents": {
-        "im": "../../components/xx_im/xx_im"
+        "xx-live-player": "../../components/xx_live_player/xx_live_player",
+        "xx-im": "../../components/xx_im/xx_im"
+
     }
 }

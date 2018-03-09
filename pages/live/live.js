@@ -26,7 +26,77 @@ Page({
      */
     data: {
         orientation:"vertical",
+
+        feedback:[
+            {
+                content: '你可以留下联系方式，文本，图片，进行方式，文本，图片，进行反馈',
+                content_type: 0,
+                contract_info: '',//弹出框input值
+                myDate: '2018-01-05 12:45',
+                role: false,
+                img: '../../images/hotapp_01_03.png',
+            }, {
+                content: '../../images/hotapp_01_03.png',
+                content_type:1,
+                contract_info: '',
+                myDate: '',
+                role: true,
+                img: "../../images/hotapp_01_07.png"
+            },
+            {
+                content: '【系统消息】：您的反馈已',
+                content_type: 0,
+                contract_info: '',
+                myDate: '',
+                role: true,
+                img: "../../images/hotapp_01_07.png"
+            },
+            {
+                content: '【系统消息】：您的反馈已',
+                content_type: 0,
+                contract_info: '',
+                myDate: '',
+                role: true,
+                img: "../../images/hotapp_01_07.png"
+            },
+            {
+                content: '【系统消息】：您的反馈已',
+                content_type: 0,
+                contract_info: '',
+                myDate: '',
+                role: true,
+                img: "../../images/hotapp_01_07.png"
+            },
+            {
+                content: '【系统消息】：您的反馈已',
+                content_type: 0,
+                contract_info: '',
+                myDate: '',
+                role: true,
+                img: "../../images/hotapp_01_07.png"
+            },
+        ],
     },
+
+    // 发送聊天信息
+    send(e){
+        console.log(e.detail)
+        var value = e.detail
+        var talk = {
+            content: value,
+            content_type: 0,
+            contract_info: '',
+            myDate: '',
+            role: true,
+            img: "../../images/hotapp_01_07.png"
+        }
+        var list = GP.data.feedback
+        list.push(talk)
+        GP.setData({
+            feedback: list
+        })
+    },
+
 
     statechange(e) {
         console.log('live-pusher code:', e.detail.code)
@@ -53,38 +123,20 @@ Page({
             GP.setData({ orientation: "vertical" })
     },
 
-    liveFullScreen(){
-        console.log("进入全屏")
-        live.requestFullScreen({
-            success: function (res) {
-                console.log(res)
-            },
-            fail: function (res) {
-                console.log(res)
-            },
-        })
-    },
-    exitFullScreen(){
-        console.log("退出全屏")
-        live.exitFullScreen({
-            success: function (res) {
-                console.log(res)
-            },
-            fail: function (res) {
-                console.log(res)
-            },
-        })
-    },
+
     onLoad(){
         GP = this
         // this.LivePlayerContext 
-        live = wx.createLivePlayerContext("live1",this)
         // console.log(a)    
         
         var _userName ="bushitan4"
         var _secret = "123"
  
     },
+    // onReady() {
+    //     live = wx.createLivePlayerContext("live1", this)
+    //     console.log(live)
+    // },
     // imInput(e){
     //     GP.setData({
     //         inputValue:e.detail.value

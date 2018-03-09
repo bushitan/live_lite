@@ -1,53 +1,73 @@
 
-<view class="container">
-    <!-- <import src="/template/addtell.wxml"/>
-    <template is="addtell" data="{{...addtell}}"/> -->
-  <!--反馈内容-->
-     <ul class="scrollwechat"  bindtap="closeimg">
-      <scroll-view class="scrollview" scroll-y="true" style='height:calc(100vh - 120px);'>
-      <block  wx:for="{{feedback}}" wx:key="index">
-       <li wx:if="{{item.myDate}}" class="mydate">
-            <view class="mydatebox">
-              <text class="mydatetext">{{item.myDate}}</text>
-             </view>
-        </li>
-      <li class="{{item.role?'sys':'user'}}">
-      <!--头像-->
-        <view class="{{item.role?'imgview1':'imgview2'}}"><image class="headimg" src="{{item.img}}"></image></view>
+<view >
+    <!-- 聊天栏 -->
+    <scroll-view id='scroll'  scroll-y="true" style='height:calc( {{height}} - 39px)' scroll-top="{{scrollTop}}">
+        <block  wx:for="{{feedback}}" wx:key="index">
+            <view wx:if="{{item.myDate}}" class="date node">
+                <label >{{item.myDate}}</label>
+            </view>
+            <view class="{{item.role?'other':'self'}} node" >
+                <template is="self" data="{{item ,networkType, arrow: item.role?rigthArrow :leftArrow}}"></template>  
+            </view>
+        </block>
+        <view style='height: 20rpx;'></view> 
+    </scroll-view>
+
+    <template name="self">
+          <!--头像-->
+        <view class="logo">
+            <image  src="{{item.img}}"></image>
+        </view>
         <!--三角-->
+         <view class="triangle">
+            <image   src="{{arrow}}"></image>
+         </view>
+         <!--内容 ：图片/文字-->
+        <view class="content">
+            <image wx:if="{{item.content_type}}" catchtap='clicImage' data-image_url="{{item.content}}"  src="{{item.content}}"></image>
+            <text  wx:else>{{item.content}}</text>
+        </view>
+        <icon wx:if="{{networkType =='fail'}}" class='warm' type="warn" size="20"/>
+        <view class="logo"></view>
+    </template>
+
+  <!--提交框-->
+    <view  class="footer">
+        <view  class="footinput">
+                <input bindinput="inputValue"  value="{{inputValue}}" type="text" />
+        </view>
+         <view  class="foodsend" hover-class='foodsend_hover' catchtap='send'>发送</view> 
+    </view> 
+
+
+</view>
+
+
+    
+        <!-- <view class="{{item.role?'imgview1':'imgview2'}}"><image class="headimg" src="{{item.img}}"></image></view>
+
          <view class="triangle">
               <image wx:if="{{item.role}}"  src="../../images/hotapp_triangleRight.png"></image>
               <image wx:else  src="../../images/hotapp_triangleLeft.png"></image>
          </view>
-         <!--内容 ：图片/文字-->
+
         <view class="{{item.role?'textview2':'textview'}}">
           <view class="feedbackimg" wx:if="{{item.content_type}}">  <image  src="{{item.content}}"></image></view>
           <text class="feedbacktext" wx:else>{{item.content}}</text>
         </view>
         <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>
-        <view class="{{item.role?'imgview1':'imgview2'}}"></view>
-      </li>
-      </block>
-      <view class="link"></view>
-       </scroll-view>
-    </ul>
+        <view class="{{item.role?'imgview1':'imgview2'}}"></view> -->
 
- 
-  <!--提交框-->
-   <view  class="footer">
-      <view  class="footinput">
-        <view class="input"><input bindfocus="bindfocus" bindblur='bindblur'  value="{{addinput}}" type="text" /></view>
-      </view>
-      <view wx:if="{{sendflag}}" class="foodsend">
+        <!-- <view wx:if="{{sendflag}}" class="foodsend">
         <view class="send">发送</view>
-      </view>
-      <view wx:else class="footadd" bindtap="bindtapimg">
+        </view>
+        <view wx:else class="footadd" bindtap="bindtapimg">
         <view class="addbroder">
             <image src="../../images/hotapp_add.png"/>
         </view>
-      </view>
-  </view> 
-   <view class="footaddbox"  hidden="{{flag ? true : false}}">
+        </view> -->
+          
+   <!-- <view class="footaddbox"  hidden="{{flag ? true : false}}">
       <ul>
         <li bindtap="footaddimg">
           <view class="footaddimg"><image src="../../images/hotapp_img.png"></image></view>
@@ -62,6 +82,4 @@
           <text>更多</text>
         </li>
       </ul>
-  </view> 
-
-</view>
+  </view>  -->
