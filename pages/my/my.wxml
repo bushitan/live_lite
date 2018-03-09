@@ -15,8 +15,47 @@
     </view>
 </view> 
 
-<view style='height:10px;'></view>
-<view wx:if="{{isSign}}">
+<!-- <view style='height:10px;'></view> -->
+<!-- <view class='page__p_15'>
+    <mark color="#b6112f" >地址</mark> 
+    s佛挡杀佛
+    <xx-button color="#b6112f" >地图导航</xx-button>
+</view> -->
+<view class='page__p_15'>
+    <mark color="#b6112f" >地址及联系方式</mark>
+</view>
+<view class='bg_white page__p_15'>
+        <xx-navigte   catchclick="toMyCoin">
+            <view slot="left" >建政路水利厅宿舍2栋2单元3202室</view> 
+            <view slot="right">导航</view>
+        </xx-navigte>
+        <view class='xx_line__gray '></view> 
+        <xx-navigte   catchclick="toMyCoin" >
+            <view slot="left" >15277126678 韦老师</view> 
+            <view slot="right">拨号</view>
+        </xx-navigte>
+    </view>
+<!-- <view  class='location bg_white '>
+    <view>南宁市建政路水利厅宿舍</view>
+    <view class='location'><button size='mini'>导航</button></view>
+</view>
+<view class='xx_line__gray page__p_15'></view> 
+<view  class='location m_t_10 bg_white '>
+    <view>15277126678 韦老师</view>
+    <view class='location'><button size='mini'>拨号</button></view>
+</view> -->
+
+<view class='page__p_15'>
+    <mark color="#b6112f" >报名</mark> 
+</view>
+    <view class="xx_input ">
+        <xx-input name="姓名" placeholder="请输入姓名" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+        <view class='xx_line__gray'></view> 
+        <xx-input name="手机" placeholder="请填写手机号码" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
+    </view>
+    <view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="sign">报名</view>
+    <view style='height:30px;'></view>
+<!-- <view wx:if="{{isSign}}">
     <cover mode="agenda" list="{{ planList }}"></cover>
     <view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="reSign">更改报名信息</view>
     <view style='height:30px;'></view>
@@ -29,4 +68,4 @@
     </view>
     <view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="sign">报名</view>
     <view style='height:30px;'></view>
-</view>
+</view> -->

@@ -4,9 +4,10 @@
     小程序的api接口集合 
  */ 
 
-// var host_url = 'http://192.168.200.103:8000/flash/';
-var host_url = 'http://127.0.0.1:8000/live/'; 
-// var host_url = 'https://www.12xiong.top/flash/';
+var host_url = 'http://192.168.199.204:8000/live/';
+
+// var host_url = 'http://127.0.0.1:8000/live/'; 
+// var host_url = 'https://www.12xiong.top/live/';
 
 function Request(options) {
     // url, data, success, fail, complete

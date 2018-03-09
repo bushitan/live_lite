@@ -22,8 +22,8 @@ Page({
         
         GP = this
         console.log(options)
-        // var article_id = options.article_id
-        // GP.getArticleContent(article_id)
+        var article_id = options.article_id
+        GP.getArticleContent(article_id)
     },
 
 
@@ -32,14 +32,14 @@ Page({
         
         API.Request
         ({
-            url: API.MEET_ARTICLE,
+            url: API.COVER_ARTICLE_GET,
             data: {
                 article_id: article_id,
             },
             success: function (res) {
                 var object = res.data
             
-                var _article_dict = object.article_dict
+                var _article_dict = object.dict_article
                 //todo  判断style ，传入选择模板名称传入
 
                 GP.setMode(_article_dict.style)

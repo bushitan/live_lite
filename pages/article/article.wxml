@@ -1,2 +1,2 @@
 
-<article content="{{article}}" mode="video"></article>
+<article content="{{article}}" mode="{{mode}}" ></article>

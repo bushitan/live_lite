@@ -2,7 +2,7 @@
 var APP = getApp()
 var API = require('../../utils/api.js');
 var KEY = require('../../utils/key.js');
-var ACTION_CARD = require('../../action/a_card.js');
+// var ACTION_CARD = require('../../action/a_card.js');
 var JMessage = require('../../utils/jmessage-wxapplet-sdk-1.4.0.min.js')
 var MD5 = require('../../utils/md5.js')
 var RANDOM = require('../../utils/random.js')

@@ -1,7 +1,7 @@
  <template name="mode_cover"> 
     <view class='xx_list'>
         <block wx:for="{{list}}" wx:key="item">
-            <view class='xx_list__node' catchtap='click'>
+            <view class='xx_list__node'  catchtap='click' data-index="{{index}}">
                 <view class='xx_list__cover'>
                     <image src='{{item.cover_url}}'></image>
                 </view>
