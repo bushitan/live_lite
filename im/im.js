@@ -8,9 +8,11 @@ var Key = "f803e0a4a08c48a31456b4ed"
 var timestamp = new Date().getTime()
 var _random = RANDOM.Get32()
 
-module.exports = {
-    Jim: Jim,
-}
+// 在任意Object对象中定义一个getter
+// getter的返回值中包含该Object的引用
+// 使用console.log打印该Object对象
+// 此时类型转换函数JSON.stringify抛出`converting circular structure to JSON`异常
+// 极光的IM使用console.log() 的坑逼！
 
 /**
  * arg:
@@ -31,8 +33,13 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
         // debug : true
     })
     var signature = MD5.hex_md5("appkey=" + appKey + "&timestamp=" + timestamp + "&random_str=" + _random + "&key=" + Key + "")
-    console.log(signature)
+    // console.log(signature)
 
+    // console.log("11")
+    // console.log(_GP)
+    // console.log(this._GP)
+    // console.log(this)
+    // console.log(that)
     //初始化
     this.jim.init({
         "appkey": appKey,
@@ -40,7 +47,11 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
         "signature": signature,
         "timestamp": timestamp
     }).onSuccess(function (data) {
-        console.log(data)
+        // console.log(data)
+        // console.log("222")
+        // console.log(this)
+        // console.log(that)
+        // console.log("that")
         that.register()
     }).onFail(function (data) {
             console.log(data)
@@ -49,14 +60,15 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
 
     //用户注册
     this.register = function(){
+        // console.log(this)
         this.jim.register({
             'username': this.username,
             'password': this.password,
         }).onSuccess(function (data) {
             // console.log(data)
             that.login()
-            }).onFail(function (data) {
-                console.log('注册失败', data)
+        }).onFail(function (data) {
+            console.log('注册失败', data)
             if (data.code == 882002){
                 that.login()
                 console.log('已经登陆', data)
@@ -83,6 +95,10 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
 
 
 
+
+module.exports = {
+    Jim: Jim,
+}
 
 
         // var appKey = "12101be04a3f9c65a1cd24b3"

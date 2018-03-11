@@ -1,55 +1,40 @@
 <!--pages/mode/mode.wxml-->
-<!-- <wxs module="foo">
-function getFirst(list){
-    return list.slice(0,3)
-}
-module.exports = {
-    msg : getFirst,
-}
-</wxs>
 
-<view class='live'>
-    <live-player 
-        id="live1"
-        src="rtmp://live.12xiong.top/AppName/StreamName"  
-        mode="SD"  
-        orientation="{{orientation}}"
-        object-fit="fillCrop"
-        autoplay bindstatechange="statechangePlayer"    binderror="error"  >
-           <template is="cover_message" data="{{feedback:foo.msg(feedback)}}"></template>
-    </live-player> 
-</view> -->
-    <xx-live-player feedback="{{feedback}}" ></xx-live-player>
+<view wx:if="{{!isPusher}}">
+    <view wx:if="{{room.style == ROOM_PREPARE}}">
+        <template is="room_prepare" data="{{room}}" />
+    </view> 
+    <view  wx:else>
+        <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx"></xx-live-player> 
+        <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx)" catchsend="sendMsg" ></xx-im>             
+    </view> 
+</view>
+
+<view wx:else>
+    <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx" wx:if="{{showPlayer}}"></xx-live-player> 
+    <xx-live-pusher src="{{room.pusher_url}}" height="400rpx" menu="{{showPusherMenu}}" wx:if="{{showPusher}}"></xx-live-pusher> 
+    <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx)" catchsend="sendMsg" wx:if="{{showIM}}"></xx-im>     
+    <button hidden='{{!isPusher}}' catchtap='changeMode' size='mini' type='primary'>设置</button> 
+    <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/>
+</view>
 
 
-    <!-- <view class='xx_m_lr15  switch'>
-        <view>
-            <label class='xx_f_10'>横</label>
-            <switch bindchange="switch2Change"/>
-            <label class='xx_f_10'>竖屏</label>
+<!-- 直播准备阶段 ，放海报 -->
+ <template name="room_prepare">
+    <view class='bg cover'>
+        <image src='{{room.cover_url}}'  mode='widthFix'></image>
+        
+        <view class='title'>{{room.title}}</view>
+        <view class='time'>
+            <label> {{room.description}} </label> 
         </view>
-        <view>        
-            <button size='mini' catchtap='liveFullScreen' >全屏</button>
+        <view class='btn'>
+            <button catchtap='prepare'  type='primary'>支付预约</button>
         </view>
-   </view>  -->
-     <!-- <cover-view class='cover' catchtap='exitFullScreen' > 退出</cover-view>  -->
-    <!-- <view class='ss'></view> -->
-    <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx)" catchsend="send"></xx-im>    
-
-
-<!-- {{ feedback }} -->
-
-
-
-
-<!-- </view> -->
-  <!-- <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
-  class="live_pusher"
-  mode="RTC" 
-  autopush bindstatechange="statechange"
-  enable-camera="true"
-  autopush="true"
- /> -->
- <!-- <input bindinput="imInput"></input>
-  <button catchtap='sendMsg'>发送信息</button> 
-<button size='mini' type='primary' catchtap='toPusher' >录制</button> -->
+    </view>
+    
+    <view style='height:10px;'></view>
+    <view class='content bg'>
+        <image src='{{room.content_url}}' mode='widthFix'></image>
+    </view>
+</template> 

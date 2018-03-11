@@ -1,42 +1,34 @@
 /* pages/mode/mode.wxss */
-page{
+
+.bg{
+    background-color: #fff;
 }
-
-.live{
-    width: 750rpx;
-    height: 400rpx;
+.cover image{
+    width: 100%;
 }
-.live live-player{
-    width: 750rpx;
-    height: 100%;
-} 
-
-/* button{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-} */
-
-.switch{
+.title{
+    padding: 15px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+.time{
+    padding: 0 15px 15px;
+    font-size: 9pt;
+    color: #b8b8b8;
     display: flex;
-     justify-content: space-around; 
-    align-items: center;
-    margin-top: 5px;
+    justify-content: space-between;
+    align-content: center;
 }
-.switch label{
-    margin-right:10px;
-     
+.btn{
+    padding: 0 15px 15px ;
 }
-.cover{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    color: yellow;
+.content{
+    padding: 15px;
 }
-.cover_img{
-    width: 32px;height: 32px;
+.content image{
+    width: 100%;
 }
 
-.message{
-    color: #fff;
+button{
+    margin: 5px 15px;
 }

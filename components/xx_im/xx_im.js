@@ -19,10 +19,15 @@ Component({
         feedback:{
             type:Array,
             value: [ ],
+            observer:"_addMessage",
         },
         height:{
             type:String,
             value: "100vh",
+        },
+        pusher: {
+            type: Boolean,
+            value: false,
         },
   },
 
@@ -34,10 +39,12 @@ Component({
         leftArrow: "../../images/hotapp_triangleLeft.png",
         inputValue:"",
         scrollTop:0,
+        isScroll:false,
     },
 
     // 组件加载完毕
     ready:function(){
+        this.openScroll()
         this.toBottom()
     },
     /**
@@ -59,6 +66,19 @@ Component({
             })
         },
 
+        //增加新信息，滑动到底部
+        _addMessage() {
+            if (this.data.isScroll == true)
+                this.toBottom()
+        },
+        closeScroll() {
+            console.log("closeScroll")
+            this.setData({ isScroll: false })
+        },
+        openScroll(){
+            console.log("openScorll")
+            this.setData({ isScroll:true})
+        },
         // 发送信息
         send(){
             if (this.data.inputValue == ""){
@@ -82,9 +102,11 @@ Component({
             var query = wx.createSelectorQuery().in(this)
             query.select('#scroll').boundingClientRect(function (res) {
                 console.log(res)
+                // console.log(res)
                 // res.top // 这个组件内 #the-id 节点的上边界坐标
                 that.setData({
-                    scrollTop: res.bottom
+                    scrollTop: 1000000
+                    // scrollTop: res.bottom
                 })
             }).exec()
         },

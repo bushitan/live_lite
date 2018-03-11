@@ -23,15 +23,26 @@ cover-view{
 .menu{
     position: absolute;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
+    background-color: rgba(178,178,178,0.4);
+    padding: 4px;
 }
-.left{
+
+.right , .left{
     display: flex;
+    padding: 0 5px;
 }
 .icon{
-    width: 32px;height: 32px;
+    width: 24px;height: 24px;
+}
+.right .icon{
+    margin-left:15px;
+}
+.left .icon{
+    margin-right:15px;
 }
 
 .message{
@@ -41,7 +52,7 @@ cover-view{
      width:750rpx;
      text-align: left;
      display: flex;
-     flex-direction: column-reverse;
+     /* flex-direction: column-reverse; */
 }
 .first{     opacity: 0.8;}
 .seconde{     opacity: 0.5;}

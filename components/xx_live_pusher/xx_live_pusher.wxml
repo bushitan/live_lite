@@ -1,0 +1,33 @@
+
+
+
+<!-- <view class='live' style='height: {{height}};' catchtap='showMenu'> -->
+    <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
+    class="live_pusher"
+    style="height:{{height}}"
+    mode="{{mode}}" 
+    autopush bindstatechange="statechange"
+    enable-camera="true"
+    autopush="true"
+    />
+<!-- </view> -->
+
+<view class='menu' hidden='{{!menu}}'>
+    <template is="node_action" data='{{name:"切换摄像头",action:"前置",e:"click"}}'/>
+    <view class='xx_line__gray'></view>     
+     <template is="node_action" data='{{name:"屏幕方向",action:"横屏",e:"click"}}' />
+    <view class='xx_line__gray'></view>     
+    <template is="node_action" data='{{name:"模式",action:"SD（标清）",e:"click"}}'/>
+</view>
+
+<template name="node_action">
+    <view  class="xx_node " hover-class="xx_active"  catchtap='{{e}}'>
+        <view class="title">
+            {{name}}
+        </view>
+        <view class="content">
+            {{action}}
+        </view> 
+        <view class="arrow" hidden='{{isarrow == "false"}}'></view> 
+    </view>
+</template>

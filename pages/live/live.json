@@ -1,7 +1,7 @@
 {
     "usingComponents": {
         "xx-live-player": "../../components/xx_live_player/xx_live_player",
+        "xx-live-pusher": "../../components/xx_live_pusher/xx_live_pusher",        
         "xx-im": "../../components/xx_im/xx_im"
-
     }
 }

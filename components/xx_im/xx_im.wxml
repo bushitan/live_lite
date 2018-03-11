@@ -1,7 +1,8 @@
 
 <view >
     <!-- 聊天栏 -->
-    <scroll-view id='scroll'  scroll-y="true" style='height:calc( {{height}} - 39px)' scroll-top="{{scrollTop}}">
+    <scroll-view id='scroll'  scroll-y="true" style='height:calc( {{height}} - 39px)' 
+    scroll-top="{{scrollTop}}">
         <block  wx:for="{{feedback}}" wx:key="index">
             <view wx:if="{{item.myDate}}" class="date node">
                 <label >{{item.myDate}}</label>
@@ -30,13 +31,15 @@
         <icon wx:if="{{networkType =='fail'}}" class='warm' type="warn" size="20"/>
         <view class="logo"></view>
     </template>
-
   <!--提交框-->
     <view  class="footer">
+         <!-- <view  class="btn btn_scroll "  catchtap='openScroll'wx:if="{{pusher}}" >模式</view>  -->
+         <view  class="btn btn_scroll" catchtap='closeScroll' wx:if="{{isScroll}}">滚动</view> 
+         <view  class="btn btn_scroll no_scroll"  catchtap='openScroll' wx:else>滚动</view> 
         <view  class="footinput">
                 <input bindinput="inputValue"  value="{{inputValue}}" type="text" />
         </view>
-         <view  class="foodsend" hover-class='foodsend_hover' catchtap='send'>发送</view> 
+         <view  class="btn btn_send" hover-class='send_hover' catchtap='send'>发送</view> 
     </view> 
 
 
