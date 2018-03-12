@@ -8,6 +8,10 @@ Component({
             type: String,
             value: "标记",
         },
+        width: {
+            type: String,
+            value: "100%",
+        },
         height: {
             type: String,
             value: "400rpx",

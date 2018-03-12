@@ -1,5 +1,5 @@
 
-<view wx:if="{{!isPusher}}">
+<!-- <view wx:if="{{!isPusher}}">
     <view wx:if="{{room.style == ROOM_PREPARE}}">
         <template is="room_prepare" data="{{room}}" />
     </view> 
@@ -28,9 +28,25 @@
  catchcomplete="paintComplete" catchclear="paintClear" drawLine="{{drawLine}}"></xx-painter>  
     </view>
     <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/>
+</view> -->
+
+<view class='bg'>        
+    <xx-tab list="{{pusherTab}}" bind:click="clickPusherTab" mode="scroll" colorunselect="#888" colorselect="#efa234" />
+</view>
+<view class='phone bg'>
+    <xx-live-pusher src="{{room.pusher_url}}" width="350rpx" height="400rpx" menu="{{showPusherMenu}}" ></xx-live-pusher>
+    <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" width="350rpx" height="400rpx" ></xx-live-player> 
 </view>
 
+<xx-live-player feedback="{{feedback}}" src="{{room.player_url}}"  height="400rpx" wx:if="{{showPlayer}}"></xx-live-player> 
+<xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx - 5px - 45px)" catchsend="sendMsg" wx:if="{{showIM}}"></xx-im>   
 
+
+<view class='painter'   wx:if="{{showPainter}}">
+    <xx-painter height="calc(100vh - 400rpx - 75px - 50px)"
+catchcomplete="paintComplete" catchclear="paintClear" drawLine="{{drawLine}}"></xx-painter>  
+</view>
+<template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/>
     <!-- <button hidden='{{!isPusher}}' catchtap='changeMode' size='mini' type='primary'>设置</button>  -->
 
 <!-- 直播准备阶段 ，放海报 -->

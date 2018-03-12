@@ -35,3 +35,10 @@
 button{
     margin: 5px 15px;
 }
+
+.phone{
+    display: flex;
+    flex-direction:row  ;
+    justify-content: space-around;
+    padding-bottom:5px; 
+}

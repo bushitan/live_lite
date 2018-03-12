@@ -1,6 +1,9 @@
 {
     "pages":[
         "pages/live/live",
+        "pages/live_phone/live_phone",
+        
+        "pages/painter/painter",
         "pages/article/article",
         "pages/my/my",
         "pages/pusher/pusher",

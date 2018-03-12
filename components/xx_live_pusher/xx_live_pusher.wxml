@@ -4,7 +4,7 @@
 <!-- <view class='live' style='height: {{height}};' catchtap='showMenu'> -->
     <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
     class="live_pusher"
-    style="height:{{height}}"
+    style="width:{{width}};height:{{height}}"
     mode="{{mode}}" 
     autopush bindstatechange="statechange"
     enable-camera="true"

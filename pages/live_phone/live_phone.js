@@ -21,7 +21,7 @@ Page({
         room: LIB.room,
         isPusher: true,//是否推流权限
         
-        pusherTab: ["推流", "电子白板", "参数设置", "直播校验", "封面"],
+        pusherTab: ["推流", "电子白板", "参数设置", "直播校验"],
         showPusher: true,
         showIM: true,
         showPlayer: false,

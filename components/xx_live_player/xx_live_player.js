@@ -13,6 +13,10 @@ Component({
             value: [],
             // observer: '_changeMessage',
         },
+        width: {
+            type: String,
+            value: "100%",
+        },
         height: {
             type: String,
             // value: "100vh",

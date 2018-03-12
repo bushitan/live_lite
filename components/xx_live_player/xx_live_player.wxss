@@ -1,11 +1,11 @@
 
 .live{
-    width: 750rpx;
+    /* width: 750rpx; */
     
 }
 .live live-player{
-    width: 750rpx;
-    height: 100%;
+     width: 100%;
+    height: 100%; 
     position: relative;
 } 
 

@@ -7,7 +7,7 @@ Component({
         // 改变颜色
         mode: {
             type: String,
-            value: "",
+            value: "menu",
             observer: '_changeMode',
         },
         list: {
