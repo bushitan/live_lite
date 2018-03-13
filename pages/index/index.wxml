@@ -1,24 +1,12 @@
-<!--index.wxml-->
-<view class="container">
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
-  <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
-  mode="RTC" 
-  autopush bindstatechange="statechange"
-  enable-camera="true"
-  autopush="true"
-   style="width: 300px; height: 225px;" />
 
-   <live-player src="rtmp://live.12xiong.top/AppName/StreamName" 
-   mode="RTC" 
-   autoplay bindstatechange="statechangePlayer"    binderror="error" 
-   style="width: 300px; height: 225px;" />
+<article content="{{room}}" mode="live" ></article>
+<view style='height:80px'></view>
+<view class='menu'>
+  <view class='btn'>
+    <button catchtap='toLive' type='primary' wx:if="{{isMember}}">进入房间</button>
+    <button catchtap='prepare' type='primary' wx:else>成为会员</button>
+  </view>
+  <view class='btn'>
+    <button catchtap='prepar'>预约</button>
+  </view>
 </view>

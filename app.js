@@ -1,5 +1,6 @@
 //app.js
 // var IM = require('im/im.js')
+var API = require('utils/api.js');
 var GP
 App({
     onLaunch: function () {
@@ -7,8 +8,23 @@ App({
         // var _userName = "bushitan4"
         // var _secret = "123"
         // GP.globalData.jim = new IM.Jim(this, _userName, _secret, GP.imSuccess)
+
     },
-    
+    onLoad(){
+        GP.onInit()
+    },
+    checkMember(callback) {
+        console.log(2138291)
+        API.Request({
+            url: API.ORDER_CHECK_MEMBER,
+            success: function (res) {
+                console.log(res.data)
+                if (callback!= undefined)
+                  callback(res)
+            }
+        })
+    },
+
     // imSuccess(data) {
     //     GP.globalData.jimIsLogin = true
     //     // 绑定监听

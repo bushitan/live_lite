@@ -24,6 +24,7 @@ Component({
         MODE_TEXT: "text",
         MODE_AUDIO: "audio",
         MODE_VIDEO: "video",
+        MODE_LIVE: "live",
         // MODE_LIVE : "news",
     },
 

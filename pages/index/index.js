@@ -1,66 +1,49 @@
 
-
-//index.js
-//获取应用实例
-const app = getApp()
+var APP = getApp()
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+var GP
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    isMember:false,
   },
 
-  statechange(e) {
-      console.log('live-pusher code:', e.detail.code)
+  onReady() {
+    GP = this
+    GP.onInit()
+    APP.checkMember(GP.success)
   },
-  statechangePlayer(e) {
-      console.log('live-player code:', e.detail.code)
-  },
-  error(e) {
-      console.error('live-player error:', e.detail.errMsg)
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  success(res){
+    GP.setData({
+      isMember: res.data.is_member
     })
   },
-//   onLoad: function () {
-//     if (app.globalData.userInfo) {
-//       this.setData({
-//         userInfo: app.globalData.userInfo,
-//         hasUserInfo: true
-//       })
-//     } else if (this.data.canIUse){
-//       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-//       // 所以此处加入 callback 以防止这种情况
-//       app.userInfoReadyCallback = res => {
-//         this.setData({
-//           userInfo: res.userInfo,
-//           hasUserInfo: true
-//         })
-//       }
-//     } else {
-//       // 在没有 open-type=getUserInfo 版本的兼容处理
-//       wx.getUserInfo({
-//         success: res => {
-//           app.globalData.userInfo = res.userInfo
-//           this.setData({
-//             userInfo: res.userInfo,
-//             hasUserInfo: true
-//           })
-//         }
-//       })
-//     }
-//   },
-//   getUserInfo: function(e) {
-//     console.log(e)
-//     app.globalData.userInfo = e.detail.userInfo
-//     this.setData({
-//       userInfo: e.detail.userInfo,
-//       hasUserInfo: true
-//     })
-//   }
+
+  onInit() {
+    API.Request({
+      url: API.ROOM_GET,
+      success: function (res) {
+        console.log(res.data)
+        GP.setData({
+          room: res.data.dict_room,
+          isPusher: res.data.is_pusher_user,
+        })
+      },
+    })
+  },
+
+  toLive(){
+    wx.navigateTo({
+      url: '/pages/live/live',
+    })
+  },
+  //封面 预约按钮
+  prepare() {
+    wx.showModal({
+      title: '预约成功',
+      content: '请按时观看直播',
+      showCancel: false,
+    })
+  },
 })

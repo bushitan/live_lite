@@ -46,15 +46,15 @@ Page({
     onInit(){
         API.Request({
             url: API.COVER_TAG_GET_LIST,
-            success:function(res){
+            success: function (res) {
                 console.log(res.data.list_tag)
                 var _tab_list = []
-                for (var i = 0; i < res.data.list_tag.length ; i++)
+                for (var i = 0; i < res.data.list_tag.length; i++)
                     _tab_list.push(res.data.list_tag[i].name)
-                
+
                 GP.setData({
-                    currentTabList : _tab_list,
-                    tagList : res.data.list_tag
+                    currentTabList: _tab_list,
+                    tagList: res.data.list_tag
                 })
                 GP.getCoverList(res.data.list_tag[0].tag_id)
             }

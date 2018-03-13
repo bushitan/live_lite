@@ -1,0 +1,5 @@
+
+
+<block wx:for="{{pptList}}">
+  <image src='{{item.url}}'></image>
+</block>

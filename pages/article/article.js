@@ -24,6 +24,8 @@ Page({
         console.log(options)
         var article_id = options.article_id
         GP.getArticleContent(article_id)
+
+        APP.checkMember()
     },
 
 

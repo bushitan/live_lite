@@ -9,7 +9,7 @@ var jim
 var GP
 var message 
 
-console.log(LIB.room)
+// console.log(LIB.room)
 Page({
     data: {
         //房间的类型
@@ -21,7 +21,7 @@ Page({
         room: LIB.room,
         isPusher: true,//是否推流权限
         
-        pusherTab: ["推流", "电子白板", "参数设置", "直播校验", "封面"],
+        pusherTab: ["推流", "电子白板", "参数设置", "直播校验"],
         showPusher: true,
         showIM: true,
         showPlayer: false,
@@ -75,6 +75,7 @@ Page({
     },
     onReady() {
         GP.onInit()
+        APP.checkMember()
         message = new LIB.Message(GP)
     },
 
@@ -106,14 +107,6 @@ Page({
         var userName = "live_app_" + user_info.user_id 
         var passWord = "123"
         APP.globalData.jim = new IM.Jim(GP, userName, passWord, message.success)
-    },
-    //封面 预约按钮
-    prepare(){
-        wx.showModal({
-            title: '预约成功',
-            content: '请按时观看直播',
-            showCancel:false,
-        })
     },
 
     onShareAppMessage() { },

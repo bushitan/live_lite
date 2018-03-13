@@ -1,7 +1,11 @@
 
-function Message(GP) {
-    this.GP = GP 
+var GP 
+var APP 
+function Message(_GP) {
+    GP = _GP
+    this.GP = _GP 
     this.APP = getApp()
+    APP = getApp()
     console.log(this.APP)
     //更新自己的 列表
     this.sendSelf = function(e){
@@ -36,8 +40,8 @@ function Message(GP) {
     },
         //IM 初始化成功
     this.success = function (data) {
-        var APP = this.APP
-        var GP = this.GP
+        // var APP = that.APP
+        // var GP = that.GP
         console.log('2success')
         APP.globalData.jimIsLogin = true
         // 绑定监听

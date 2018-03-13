@@ -10,6 +10,7 @@ Page({
         userInfo:{},
         lock:false,
         isSign:false,
+        isTeacher:false,//是否教师
         planList: [{
             title: "音乐课",
             summary: "音乐欣赏、表演",
@@ -25,10 +26,23 @@ Page({
         },
         ]
     },
-    toPusher() {
+    formSubmit: function(e) {
+      console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    },
+    formReset: function() {
+      console.log('form发生了reset事件')
+    },
+
+    toLivePhone() {
         wx.navigateTo({
-            url: '/pages/pusher/pusher',
+          url: '/pages/live_phone/live_phone',
         })
+    },
+    
+    toPPT() {
+      wx.navigateTo({
+        url: '/pages/ppt/ppt',
+      })
     },
     
     sign(){
@@ -41,13 +55,27 @@ Page({
             })
             return
         }
-        wx.setStorageSync(KEY.IS_SIGN, true)
-        wx.showModal({
-            title: '报名成功',
-            content: '请预览我们近期的课程表，',
-        })
-        GP.setData({
-            isSign:true
+        // wx.setStorageSync(KEY.IS_SIGN, true)
+        // wx.showModal({
+        //     title: '报名成功',
+        //     content: '请预览我们近期的课程表，',
+        // })
+        // GP.setData({
+        //     isSign:true
+        // })
+        API.Request({
+          url: API.LITE_USER_SET_INFO,
+          data: {
+            "name": userInfo.name,
+            "phone": userInfo.phone,
+          },
+          success:function(res){
+            console.log(res)
+            wx.showModal({
+              title: '报名成功',
+              content: '请预览我们近期的课程表，',
+            })
+          }
         })
     },
     reSign(){
@@ -92,27 +120,27 @@ Page({
      * 2、 供求、花名册、会员，没有点播
      */
     onInit: function (options) {
-        API.Request({
-            url: API.MEET_SIGN_GET_INFO,
-            success: function (res) {
-                console.log(res)
-                GP.setData({
-                    userInfo: res.data.dict_attendee
-                })
-            }
-        })
+        // API.Request({
+        //     url: API.MEET_SIGN_GET_INFO,
+        //     success: function (res) {
+        //         console.log(res)
+        //         GP.setData({
+        //             userInfo: res.data.dict_attendee
+        //         })
+        //     }
+        // })
 
         // 获取入场券信息
         API.Request({
-            url: API.MEET_SIGN_PAY_GET_INFO,
-            success: function (res) {
-                console.log(res)
-                GP.setData({
-                    signList: res.data.list_sign
-                })
-                // wx.setStorageSync(KEY.USER_INFO, res.data.dict_attendee)
-            }
+          url: API.ROOM_CHECK_TEACHER,
+          success: function (res) {
+            console.log(res)
+            GP.setData({
+              isTeacher: res.data.is_teacher
+            })
+          }
         })
+        
     },
 
     // 上传信息

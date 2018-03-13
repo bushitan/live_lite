@@ -9,7 +9,7 @@ var jim
 var GP
 var message 
 
-console.log(LIB.room)
+// console.log(LIB.room)
 Page({
     data: {
         //房间的类型

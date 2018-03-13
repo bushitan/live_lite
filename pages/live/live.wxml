@@ -1,9 +1,9 @@
 
 <view wx:if="{{!isPusher}}">
-    <view wx:if="{{room.style == ROOM_PREPARE}}">
+    <!-- <view wx:if="{{room.style == ROOM_PREPARE}}">
         <template is="room_prepare" data="{{room}}" />
-    </view> 
-    <view  wx:else>
+    </view>  -->
+    <view >
         <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx"></xx-live-player> 
         <view class='bg'>        
             <xx-tab list="{{playerTab}}" bind:click="clickPlayerTab" colorunselect="#888" colorselect="#efa234" />
@@ -27,14 +27,14 @@
         <xx-painter height="calc(100vh - 400rpx - 75px)"
  catchcomplete="paintComplete" catchclear="paintClear" drawLine="{{drawLine}}"></xx-painter>  
     </view>
-    <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/>
+    <!-- <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/> -->
 </view>
 
 
     <!-- <button hidden='{{!isPusher}}' catchtap='changeMode' size='mini' type='primary'>设置</button>  -->
 
 <!-- 直播准备阶段 ，放海报 -->
- <template name="room_prepare">
+ <!-- <template name="room_prepare">
     <view class='bg cover'>
         <image src='{{room.cover_url}}'  mode='widthFix'></image>
         
@@ -51,4 +51,4 @@
     <view class='content bg'>
         <image src='{{room.content_url}}' mode='widthFix'></image>
     </view>
-</template> 
+</template>  -->
