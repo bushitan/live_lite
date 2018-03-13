@@ -1,6 +1,8 @@
 
 var GP 
-var APP 
+var APP
+var KEY = require('../../utils/key.js');
+var IM = require('../../im/im.js')
 function Message(_GP) {
     GP = _GP
     this.GP = _GP 
@@ -59,7 +61,8 @@ function Message(_GP) {
     },
 
         //IM 初始化成功
-    this.success = function (data) {
+        this.success = function (data) {
+            var user_info = wx.getStorageSync(KEY.USER_INFO)
         // var APP = that.APP
         // var GP = that.GP
         console.log('success')
@@ -70,6 +73,9 @@ function Message(_GP) {
         });
         APP.globalData.jim.onDisconnect(function () {
             console.log("断线监听", data)
+            var userName = "live_app_" + user_info.user_id
+            var passWord = "123"
+            APP.globalData.jim = new IM.Jim(GP, userName, passWord, GP.success)
         });
 
         APP.globalData.jim.onRoomMsg(function (data) {

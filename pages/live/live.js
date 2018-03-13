@@ -57,7 +57,7 @@ Page({
     paintComplete(e){
         var drawLine = e.detail
         // drawLine.width = 12
-        // console.log(drawLine)
+        console.log(drawLine)
         // wx.setStorageSync("aaaa", drawLine)
         GP.setData({
             drawLine: drawLine

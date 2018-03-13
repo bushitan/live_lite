@@ -21,6 +21,9 @@
       "navigationBarTitleText": "牛鬼TV",
       "navigationBarTextStyle":"black"
   },
+  "networkTimeout":{
+      "connectSocket":5000
+  },
   "tabBar": {
       "list": [{
           "pagePath": "pages/index/index",
