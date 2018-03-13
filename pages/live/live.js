@@ -5,7 +5,7 @@ var KEY = require('../../utils/key.js');
 var LIB = require('lib.js');
 var IM = require('../../im/im.js')
 
-var jim 
+// var jim 
 var GP
 var message 
 
@@ -23,11 +23,11 @@ Page({
         
         pusherTab: ["推流", "电子白板", "参数设置", "直播校验"],
         showPusher: true,
-        showIM: true,
+        showIM: false,
         showPlayer: false,
         showPusherMenu: false,
         showCover: false,
-        showPainter: false,
+        showPainter: true,
         feedback: LIB.feedback ,
 
         playerTab: ["群聊", "电子白板"],
@@ -56,10 +56,13 @@ Page({
     //绘画完成
     paintComplete(e){
         var drawLine = e.detail
-        drawLine.width = 12
+        // drawLine.width = 12
+        // console.log(drawLine)
+        // wx.setStorageSync("aaaa", drawLine)
         GP.setData({
             drawLine: drawLine
         })
+        message.sendDraw(drawLine)
     },
     //点击清除画布按钮
     paintClear(e) {

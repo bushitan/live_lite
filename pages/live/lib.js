@@ -27,45 +27,77 @@ function Message(_GP) {
     }
     //IM发送
     this.sendOther = function (e) {
+        // console.log(drawJson)
         var APP = this.APP
         if (APP.globalData.jimIsLogin) {
             APP.globalData.jim.sendChatroomMsg({
                 'target_rid': APP.globalData.jimRoomID,
                 'content': e.detail
             }).onSuccess(function (data, msg) {
-                // console.log(data)
-            }).onFail(function (data) {
+                console.log(data)
+                }).onFail(function (data) {
+                console.log(data)
             });
         }
     },
+
+        //IM发送
+    this.sendDraw = function (drawObj) {
+        // console.log(drawJson)
+        var APP = this.APP
+        if (APP.globalData.jimIsLogin) {
+            APP.globalData.jim.sendChatroomMsg({
+                'target_rid': APP.globalData.jimRoomID,
+                'content': "123",
+                'extras': drawObj
+            }).onSuccess(function (data, msg) {
+                console.log(data)
+            }).onFail(function (data) {
+                console.log(data)
+            });
+        }
+    },
+
         //IM 初始化成功
     this.success = function (data) {
         // var APP = that.APP
         // var GP = that.GP
-        console.log('2success')
+        console.log('success')
         APP.globalData.jimIsLogin = true
         // 绑定监听
         APP.globalData.jim.onMsgReceive(function (data) {
             console.log("一般监听", data)
         });
+        APP.globalData.jim.onDisconnect(function () {
+            console.log("断线监听", data)
+        });
 
         APP.globalData.jim.onRoomMsg(function (data) {
             console.log("聊天室监听", data)
 
-            var msg =
-                {
-                    content: data.content.msg_body.text,
-                    content_type: 0,
-                    contract_info: '',//弹出框input值
-                    myDate: '2018-01-05 12:45',
-                    role: false,
-                    img: '../../images/hotapp_01_03.png',
-                }
-            var feedback = GP.data.feedback
-            feedback.push(msg)
-            GP.setData({
-                feedback: feedback
-            })
+            //画布
+            if (data.content.msg_body.text == "123") {
+                GP.setData({
+                    drawLine: data.content.msg_body.extras
+                })
+            }
+            else{
+                // 文字传输
+                var msg =
+                    {
+                        content: data.content.msg_body.text,
+                        content_type: 0,
+                        contract_info: '',//弹出框input值
+                        myDate: '2018-01-05 12:45',
+                        role: false,
+                        img: '../../images/hotapp_01_03.png',
+                    }
+                var feedback = GP.data.feedback
+                feedback.push(msg)
+                GP.setData({
+                    feedback: feedback
+                })
+            }
         });
         // 进入聊天室
         APP.globalData.jim.enterChatroom({

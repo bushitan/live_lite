@@ -1,9 +1,9 @@
 {
   "pages":[
+    "pages/live/live",
     "pages/index/index",
     "pages/ppt/ppt",
     "pages/live_phone/live_phone",
-    "pages/live/live",
     
     "pages/painter/painter",
     "pages/article/article",
