@@ -21,19 +21,21 @@ Page({
         room: LIB.room,
         isPusher: true,//是否推流权限
         
-        pusherTab: ["推流", "电子白板", "参数设置", "直播校验"],
+        pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
         showPusher: true,
         showIM: false,
         showPlayer: false,
         showPusherMenu: true,
         showCover: false,
         showPainter: false,
+        showGallery:false,
         feedback: LIB.feedback ,
 
         playerTab: ["群聊", "电子白板"],
         showPlayerIM: true,
         showPlayerPainter: false,
 
+        tagIndex:0,
         bgImageUrl:"",//背景图片
     },
     // 点击播放标签
@@ -68,12 +70,21 @@ Page({
       message.sendClear(clearObj)
     },
 
-    clickPPT() {
-      var imageUrl = "../../images/live_bg.jpg"
-      GP.setData({
-        bgImageUrl: imageUrl
-      })
-      message.sendPPT({url:imageUrl})
+    choicePPT(e) {
+        var imageUrl = e.detail
+        GP.setData({
+            bgImageUrl: imageUrl
+        })
+
+        // ppt菜单 切换到 电子白板
+        var mode = new LIB.Mode(GP)
+        message.sendPPT({url:imageUrl})
+        mode.painter()
+        GP.setData({ tagIndex:1})
+        // 提示成功
+        wx.showToast({
+            title: '设置ppt成功',
+        })
 
     },
 

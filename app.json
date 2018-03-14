@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/live/live",
     "pages/index/index",
+    "pages/live/live",
     "pages/ppt/ppt",
     "pages/live_phone/live_phone",
     

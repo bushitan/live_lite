@@ -98,7 +98,7 @@ function Message(_GP) {
     this.reLogin = function(){
 
       var user_info = wx.getStorageSync(KEY.USER_INFO)
-      // var userName = "live_app_" + user_info.user_id
+    //   var userName = "live_app_" + user_info.user_id
       var userName = "live_app_3"
       var passWord = "123"
       APP.globalData.jim = new IM.Jim(GP, userName, passWord, that.success)
@@ -209,9 +209,10 @@ function Mode(GP){
         switch (index) {
             case 0: this.pusher(); break;
             case 1: this.painter(); break;
-            case 2: this.set(); break;
-            case 3: this.check(); break;
-            case 4: this.cover(); break;
+            case 2: this.ppt(); break;
+            case 3: this.set(); break;
+            case 4: this.check(); break;
+            case 5: this.cover(); break;
         }
     }
    
@@ -223,6 +224,7 @@ function Mode(GP){
             showPainter:false,
             showPlayer: false,
             showCover: false,
+            showGallery: false,
         })
     }
     this.painter = function() {
@@ -233,6 +235,7 @@ function Mode(GP){
             showPainter: true,
             showPlayer: false,
             showCover: false,
+            showGallery: false,
         })
     }
     this.set = function() {
@@ -243,6 +246,18 @@ function Mode(GP){
             showPainter: false,
             showPlayer: false,
             showCover: false,
+            showGallery: false,
+        })
+    }
+    this.ppt = function () {
+        this.GP.setData({
+            showPusher: true,
+            showPusherMenu: false,
+            showIM: false,
+            showPainter: false,
+            showPlayer: false,
+            showCover: false,
+            showGallery: true,
         })
     }
     this.check = function() {
@@ -253,6 +268,7 @@ function Mode(GP){
             showPainter: false,
             showPlayer: true,
             showCover: false,
+            showGallery: false,
         })
     }
     this.cover = function() {
@@ -263,6 +279,7 @@ function Mode(GP){
             showPainter: false,
             showPlayer: false,
             showCover: true,
+            showGallery: false,
         })
     }
 }
