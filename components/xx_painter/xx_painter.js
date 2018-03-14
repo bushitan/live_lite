@@ -2,6 +2,7 @@
 
 var CLEAR = 0
 var DRAW_LINE = 1
+var TOP_TOUCH_STEP = 80 //单次绘画最高步数
 Component({
   /**
    * 组件的属性列表
@@ -20,9 +21,18 @@ Component({
             value: {},
             observer:"addLine",
         },
+        // 是否显示工具栏
         tool: {
             type: Boolean,
             value: true,
+        },
+        
+        bg: {
+          type: String,
+          value: "",
+          // value: "../../images/live_bg.jpg",
+          // value: "../../images/hotapp_01_03.png",
+          
         },
   },
 
@@ -40,6 +50,7 @@ Component({
       startX: 0, //保存X坐标轴变量
       startY: 0, //保存X坐标轴变量
       isClear: false, //是否启用橡皮擦标记
+      
       //手指触摸动作开始
       touchStart: function (e) {
           if (this.data.tool == false)
@@ -47,7 +58,7 @@ Component({
           //得到触摸点的坐标
           this.startX = e.changedTouches[0].x
           this.startY = e.changedTouches[0].y
-          this.posList = [{"x":this.startX,"y": this.startY}] //记录数组
+          this.posList = [{ "x": parseInt(this.startX), "y": parseInt(this.startY )}] //记录数组
           this.context = wx.createCanvasContext("myCanvas",this)
 
           if (this.isClear) { //判断是否启用的橡皮擦功能  ture表示清除  false表示画画
@@ -73,8 +84,11 @@ Component({
 
           if (this.data.tool == false)
               return
-          var startX1 = e.changedTouches[0].x
-          var startY1 = e.changedTouches[0].y
+          var startX1 = parseInt(e.changedTouches[0].x)
+          var startY1 = parseInt( e.changedTouches[0].y)
+
+          if (this.posList.length > TOP_TOUCH_STEP)
+            return
           this.posList.push({ "x": startX1, "y": startY1 })
           if (this.isClear) { //判断是否启用的橡皮擦功能  ture表示清除  false表示画画
 
@@ -106,14 +120,20 @@ Component({
             //   this.context.draw()
             // console.log(this.posList)
             // this.paintByPosList(this.posList)
-
-            var painterData = {
-                style: DRAW_LINE,
-                color: this.data.color,
-                width: this.data.pen,
-                posList:this.posList
-            }
-            this.triggerEvent('complete', painterData);
+          if (this.posList.length >= TOP_TOUCH_STEP )
+            wx.showModal({
+              title: '温馨提示',
+              content: '这一笔太长，没墨水了T_T，请画短一点',
+              showCancel:false,
+              confirmText:"知道了",
+            })
+          var painterData = {
+              style: DRAW_LINE,
+              color: this.data.color,
+              width: this.data.pen,
+              posList:this.posList
+          }
+          this.triggerEvent('complete', painterData);
         },
 
         addLine(_new,_old){
@@ -157,9 +177,7 @@ Component({
         },
         //启动橡皮擦方法
         clearCanvasEvent: function () {
-            // this.context.clearRect(0,0,1000,1000)
-            // this.context.draw()
-            // this.clearCanvas()
+            this.clearCanvas()
             this.triggerEvent(
                 'clear', 
                 { style: CLEAR}

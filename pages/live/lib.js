@@ -1,9 +1,11 @@
 
 var GP 
+var that
 var APP
 var KEY = require('../../utils/key.js');
 var IM = require('../../im/im.js')
 function Message(_GP) {
+    that = this
     GP = _GP
     this.GP = _GP 
     this.APP = getApp()
@@ -43,14 +45,14 @@ function Message(_GP) {
         }
     },
 
-        //IM发送
+    //IM发送 ——绘画数据
     this.sendDraw = function (drawObj) {
         // console.log(drawJson)
         var APP = this.APP
         if (APP.globalData.jimIsLogin) {
             APP.globalData.jim.sendChatroomMsg({
                 'target_rid': APP.globalData.jimRoomID,
-                'content': "123",
+                'content': "xx_draw",
                 'extras': drawObj
             }).onSuccess(function (data, msg) {
                 console.log(data)
@@ -58,11 +60,52 @@ function Message(_GP) {
                 console.log(data)
             });
         }
+    },        
+    //IM发送 —— 清空屏幕
+    this.sendClear = function (clearObj) {
+        // console.log(drawJson)
+        var APP = this.APP
+        if (APP.globalData.jimIsLogin) {
+            APP.globalData.jim.sendChatroomMsg({
+                'target_rid': APP.globalData.jimRoomID,
+                'content': "xx_clear",
+                'extras': clearObj
+            }).onSuccess(function (data, msg) {
+                console.log(data)
+            }).onFail(function (data) {
+                console.log(data)
+            });
+        }
     },
+    //IM发送 —— 清空屏幕
+    this.sendPPT = function (imageObj) {
+        // console.log(drawJson)
+        var APP = this.APP
+        if (APP.globalData.jimIsLogin) {
+            APP.globalData.jim.sendChatroomMsg({
+                'target_rid': APP.globalData.jimRoomID,
+                'content': "xx_ppt",
+                'extras': imageObj
+            }).onSuccess(function (data, msg) {
+                console.log(data)
+            }).onFail(function (data) {
+                console.log(data)
+            });
+        }
+    },
+    
+    //断线重新登录
+    this.reLogin = function(){
 
-        //IM 初始化成功
-        this.success = function (data) {
-            var user_info = wx.getStorageSync(KEY.USER_INFO)
+      var user_info = wx.getStorageSync(KEY.USER_INFO)
+      // var userName = "live_app_" + user_info.user_id
+      var userName = "live_app_3"
+      var passWord = "123"
+      APP.globalData.jim = new IM.Jim(GP, userName, passWord, that.success)
+    }
+
+    //IM 初始化成功
+    this.success = function (data) {
         // var APP = that.APP
         // var GP = that.GP
         console.log('success')
@@ -71,21 +114,41 @@ function Message(_GP) {
         APP.globalData.jim.onMsgReceive(function (data) {
             console.log("一般监听", data)
         });
+      
+
         APP.globalData.jim.onDisconnect(function () {
-            console.log("断线监听", data)
-            var userName = "live_app_" + user_info.user_id
-            var passWord = "123"
-            APP.globalData.jim = new IM.Jim(GP, userName, passWord, GP.success)
+          
+          var task = setInterval(
+            function(){
+              if (APP.globalData.jim.isConnect()){
+                clearInterval(task)
+                wx.closeSocket()
+                that.reLogin()
+                console.log("重新登录")
+              }
+            },
+            1000
+          )
+          
         });
 
         APP.globalData.jim.onRoomMsg(function (data) {
             console.log("聊天室监听", data)
-
             //画布
-            if (data.content.msg_body.text == "123") {
+            if (data.content.msg_body.text == "xx_draw") {
                 GP.setData({
                     drawLine: data.content.msg_body.extras
                 })
+            }
+            else if (data.content.msg_body.text == "xx_clear") {
+              GP.setData({
+                drawLine: data.content.msg_body.extras
+              })
+            }
+            else if (data.content.msg_body.text == "xx_ppt") {
+              GP.setData({
+                bgImageUrl: data.content.msg_body.extras.url
+              })
             }
             else{
                 // 文字传输
@@ -114,6 +177,8 @@ function Message(_GP) {
             console.log("进入失败", data)
         });
     }
+
+    // that.reLogin() 
 }
 
 function Mode(GP){

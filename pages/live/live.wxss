@@ -4,7 +4,7 @@
     background-color: #fff;
 }
 .painter{
-    padding: 10px 15px;
+    padding: 10px 20px;
 }
 .cover image{
     width: 100%;

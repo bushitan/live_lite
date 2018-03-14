@@ -25,14 +25,16 @@ Page({
         showPusher: true,
         showIM: false,
         showPlayer: false,
-        showPusherMenu: false,
+        showPusherMenu: true,
         showCover: false,
-        showPainter: true,
+        showPainter: false,
         feedback: LIB.feedback ,
 
         playerTab: ["群聊", "电子白板"],
         showPlayerIM: true,
         showPlayerPainter: false,
+
+        bgImageUrl:"",//背景图片
     },
     // 点击播放标签
     clickPlayerTab(e) {
@@ -42,6 +44,7 @@ Page({
         mode.ChangePlayer(index)
 
     },
+
     // 点击推流标签
     clickPusherTab(e) {
         var index = e.detail
@@ -49,15 +52,10 @@ Page({
         mode.ChangePusher(index)
     },
 
-    //设置按钮——改变模式
-    // changeMode() {
-    // },
-
     //绘画完成
     paintComplete(e){
         var drawLine = e.detail
         // drawLine.width = 12
-        console.log(drawLine)
         // wx.setStorageSync("aaaa", drawLine)
         GP.setData({
             drawLine: drawLine
@@ -66,12 +64,20 @@ Page({
     },
     //点击清除画布按钮
     paintClear(e) {
-        var drawLine = e.detail
-        GP.setData({
-            drawLine: e.detail
-        })
+      var clearObj = e.detail
+      message.sendClear(clearObj)
+    },
+
+    clickPPT() {
+      var imageUrl = "../../images/live_bg.jpg"
+      GP.setData({
+        bgImageUrl: imageUrl
+      })
+      message.sendPPT({url:imageUrl})
 
     },
+
+
 
     onLoad(){
         GP = this
@@ -105,11 +111,12 @@ Page({
 
     //IM 初始化
     imInit(){
-        console.log(wx.getStorageSync(KEY.USER_INFO))
-        var user_info = wx.getStorageSync(KEY.USER_INFO)
-        var userName = "live_app_" + user_info.user_id 
-        var passWord = "123"
-        APP.globalData.jim = new IM.Jim(GP, userName, passWord, message.success)
+      message.reLogin()
+        // console.log(wx.getStorageSync(KEY.USER_INFO))
+        // var user_info = wx.getStorageSync(KEY.USER_INFO)
+        // var userName = "live_app_" + user_info.user_id 
+        // var passWord = "123"
+        // APP.globalData.jim = new IM.Jim(GP, userName, passWord, message.success)
     },
 
     onShareAppMessage() { },

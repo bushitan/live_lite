@@ -1,3 +1,5 @@
+<!-- <button catchtap='clickPPT'>发送ppt</button> --> 
+
 
 <view wx:if="{{!isPusher}}">
     <!-- <view wx:if="{{room.style == ROOM_PREPARE}}">
@@ -9,7 +11,7 @@
             <xx-tab list="{{playerTab}}" bind:click="clickPlayerTab" colorunselect="#888" colorselect="#efa234" />
         </view>
         <view class='painter' wx:if="{{showPlayerPainter}}">
-            <xx-painter  drawLine="{{drawLine}}" height="calc(100vh - 400rpx - 75px)"  tool="{{false}}"/>
+            <xx-painter  drawLine="{{drawLine}}" height="calc(100vh - 400rpx - 75px)" bg="{{bgImageUrl}}"  tool="{{false}}"/>
         </view>
         <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{showPlayerIM}}"></xx-im>             
     </view> 
@@ -23,9 +25,11 @@
     <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{showIM}}"></xx-im>   
     <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx" wx:if="{{showPlayer}}"></xx-live-player> 
     
+
+<xx-gallery></xx-gallery>
     <view class='painter'   wx:if="{{showPainter}}">
         <xx-painter height="calc(100vh - 400rpx - 75px)"
- catchcomplete="paintComplete" catchclear="paintClear" drawLine="{{drawLine}}"></xx-painter>  
+ catchcomplete="paintComplete" catchclear="paintClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter>  
     </view>
     <!-- <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/> -->
 </view>

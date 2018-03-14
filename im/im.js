@@ -5,8 +5,6 @@ var RANDOM = require('random.js')
 var MD5 = require('md5.js')
 var appKey = "12101be04a3f9c65a1cd24b3"
 var Key = "f803e0a4a08c48a31456b4ed"
-var timestamp = new Date().getTime()
-var _random = RANDOM.Get32()
 
 // 在任意Object对象中定义一个getter
 // getter的返回值中包含该Object的引用
@@ -22,16 +20,21 @@ var _random = RANDOM.Get32()
  * loginSuccessFun：登陆成功函数
  * loginFailFun: 登陆失败函数
  */
+
+var username 
+var password 
 function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
     var that = this
     this.GP = _GP
-    this.username = username
-    this.password = password
+    username = username
+    password = password
     this.loginSuccessFun = loginSuccessFun
     this.loginFailFun = loginFailFun
     this.jim = new JMessage({
         // debug : true
     })
+    var timestamp = new Date().getTime()
+    var _random = RANDOM.Get32()
     var signature = MD5.hex_md5("appkey=" + appKey + "&timestamp=" + timestamp + "&random_str=" + _random + "&key=" + Key + "")
     // console.log(signature)
 
@@ -62,8 +65,8 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
     this.register = function(){
         // console.log(this)
         this.jim.register({
-            'username': this.username,
-            'password': this.password,
+            'username': username,
+            'password': password,
         }).onSuccess(function (data) {
             // console.log(data)
             that.login()
@@ -71,19 +74,21 @@ function Jim(_GP, username, password, loginSuccessFun, loginFailFun){
             console.log('注册失败', data)
             if (data.code == 882002){
                 that.login()
-                console.log('已经登陆', data)
             }
         });
     }
 
     //用户登录
-    this.login = function(){
+    this.login = function () {
+        console.log('准备登录')
         this.jim.login({
-            'username': this.username,
-            'password': this.password,
+            'username': username,
+            'password': password,
         }).onSuccess(function (data) {
+          console.log('登录成功', data)
             that.loginSuccessFun(data)
         }).onFail(function (data) {
+          console.log('登录失败', data)
             if (tha.loginFailFun != undefined)
                 that.loginFailFun(data)
         });
