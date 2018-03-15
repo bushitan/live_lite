@@ -11,8 +11,10 @@
     
     </view>
 </view> 
-<template is="manage" wx:if="{{isTeacher}}"/>
-<template is="visiter" data="{{userInfo}}" wx:else/>
+<!-- <template is="manage" wx:if="{{isTeacher}}"/>
+<template is="visiter" data="{{userInfo}}" wx:else/> -->
+<template is="manage" />
+<template is="visiter" data="{{userInfo}}" />
 
 
 <template name="manage">
@@ -43,8 +45,8 @@
               <view slot="right">拨号</view>
           </xx-navigte>
       </view>
-      <view class='page__p_15'>
-      <mark color="#b6112f" >报名</mark> 
+  <view class='page__p_15'>
+    <mark color="#b6112f" >报名</mark> 
   </view>
   <view class="xx_input ">
       <xx-input name="姓名" placeholder="请输入姓名" bindinput='inputName' value='{{userInfo.name}}'></xx-input>

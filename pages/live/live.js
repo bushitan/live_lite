@@ -19,13 +19,13 @@ Page({
         orientation: "vertical",
         isBegin: false,
         room: LIB.room,
-        isPusher: true,//是否推流权限
+        isPusher: false,//是否推流权限
         
         pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
         showPusher: true,
-        showIM: false,
+        showIM: true,
         showPlayer: false,
-        showPusherMenu: true,
+        showPusherMenu: false,
         showCover: false,
         showPainter: false,
         showGallery:false,

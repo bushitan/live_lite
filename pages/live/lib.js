@@ -98,8 +98,8 @@ function Message(_GP) {
     this.reLogin = function(){
 
       var user_info = wx.getStorageSync(KEY.USER_INFO)
-    //   var userName = "live_app_" + user_info.user_id
-      var userName = "live_app_3"
+      var userName = "live_app_" + user_info.user_id
+      // var userName = "live_app_3"
       var passWord = "123"
       APP.globalData.jim = new IM.Jim(GP, userName, passWord, that.success)
     }
