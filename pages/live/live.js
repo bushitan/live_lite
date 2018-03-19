@@ -30,13 +30,15 @@ Page({
     isPusher: false,//是否推流权限
     
     pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
-    showPusher: true,
-    showIM: true,
-    showPlayer: false,
-    showPusherMenu: false,
-    showCover: false,
-    showPainter: false,
-    showGallery:false,
+    show:{
+      Pusher: true,
+      IM: true,
+      Player: false,
+      PusherMenu: false,
+      Cover: false,
+      Painter: false,
+      Gallery:false,
+    },
     feedback: LIB.feedback ,
 
     playerTab: ["群聊", "电子白板"],
@@ -58,8 +60,9 @@ Page({
   // 点击推流标签
   clickPusherTab(e) {
       var index = e.detail
-      var mode = new LIB.Mode(GP)
-      mode.ChangePusher(index)
+      // var mode = new LIB.Mode(GP)
+      // mode.ChangePusher(index)
+      Script.ChangePusher(index)
   },
 
 
