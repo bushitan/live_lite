@@ -26,10 +26,10 @@
     <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx" wx:if="{{showPlayer}}"></xx-live-player> 
     
 
-    <xx-gallery catchchoice="choicePPT"  wx:if="{{showGallery}}" ></xx-gallery>
+    <xx-gallery catchchoice="sendPPT"  wx:if="{{showGallery}}" ></xx-gallery>
     <view class='painter'   wx:if="{{showPainter}}">
         <xx-painter height="calc(100vh - 400rpx - 75px)"
- catchcomplete="paintComplete" catchclear="paintClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter>  
+ catchcomplete="sendDraw" catchclear="sendClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter>  
     </view>
     <!-- <template is="room_prepare" data="{{room}}" wx:if="{{showCover}}"/> -->
 </view>

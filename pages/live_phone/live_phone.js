@@ -3,7 +3,7 @@ var APP = getApp()
 var API = require('../../utils/api.js');
 var KEY = require('../../utils/key.js');
 var LIB = require('lib.js');
-var IM = require('../../im/im.js')
+var IM = require('../../utils/im/im.js')
 
 var jim 
 var GP

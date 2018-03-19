@@ -3,7 +3,7 @@ var GP
 var that
 var APP
 var KEY = require('../../utils/key.js');
-var IM = require('../../im/im.js')
+var IM = require('../../utils/im/im.js')
 function Message(_GP) {
     that = this
     GP = _GP
