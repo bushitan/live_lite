@@ -27,6 +27,10 @@
     <xx-navigte   catchclick="toPPT">
         <view slot="left" >PPT/图库</view>
     </xx-navigte>
+      <view class='xx_line__gray '></view> 
+    <xx-navigte   catchclick="toVoiceRecord">
+        <view slot="left" >声音录制</view>
+    </xx-navigte>
   </view> 
 </template>
 

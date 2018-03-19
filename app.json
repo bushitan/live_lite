@@ -1,5 +1,7 @@
 {
   "pages":[
+      
+    "pages/record/record",
     "pages/index/index",
     "pages/live/live",
     "pages/ppt/ppt",

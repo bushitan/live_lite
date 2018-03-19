@@ -1,0 +1,31 @@
+<!--pages/cover/cover.wxml-->
+<view class="tab">
+    <tab     list="{{currentTabList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
+</view>
+
+<!-- <cover list="{{coverList}}" bind:click="clickCover" mode="cover"></cover> -->
+<!-- <cover_news list="{{coverList}}" bind:click="clickCover"></cover_news> -->
+
+<template is="upload_audio" 
+data="{{showRecordDialog:showRecordDialog , isAbleUpload:isAbleUpload ,isRecording:isRecording, clock:clock}}"/>
+
+<template   name="upload_audio">
+    <view class="screen__dialog" hidden="{{!showRecordDialog}}">
+        <view class='screen__center'>{{clock}}</view>
+        <button catchtap="start" class='btn' disabled="{{isRecording}}">开始录音</button>
+        <button catchtap="stop" class='btn'  disabled="{{!isRecording}}">停止录音</button>
+        <button catchtap="play" class='btn'>播放录音</button>
+        <view class='screen__center btn'>
+            <button catchtap="closeRecord" size='mini' class=''>关闭</button>
+            <button catchtap="uploadRecord" type='primary' size='mini' disabled="{{!isAbleUpload}}">上传</button>
+        </view>
+       
+    </view>
+</template>
+
+
+<block wx:for="{{audioList}}">
+    <view class='list'>
+        <button catchtap='playUrl' data-url="{{item}}">播放音频{{index}}</button>
+    </view>
+</block>

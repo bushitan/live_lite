@@ -38,11 +38,16 @@ Page({
           url: '/pages/live_phone/live_phone',
         })
     },
-    
+
     toPPT() {
-      wx.navigateTo({
-        url: '/pages/ppt/ppt',
-      })
+        wx.navigateTo({
+            url: '/pages/ppt/ppt',
+        })
+    },
+    toVoiceRecord() {
+        wx.navigateTo({
+            url: '/pages/ppt/ppt',
+        })
     },
     
     sign(){

@@ -1,0 +1,45 @@
+/* pages/cover/cover.wxss */
+
+.tab{
+    background-color: #fff;
+}
+.list{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+audio{
+    width: 750rpx;
+    height: 100px;
+    margin:100px;
+    /* background-color: gray; */
+
+}
+
+.screen__dialog{
+    /* position: fixed; */
+    background-color: #fff;
+    top: 0px;
+    width:750rpx; 
+    height: 100vh;
+}
+
+.screen__center{
+    display: flex;
+    justify-content: center;
+}
+.screen__absolute{
+    position: absolute;
+     width: 100%; 
+      z-index: 9999;  
+}
+
+.screen__center_title{
+    display: flex;
+    justify-content:  space-between ;
+     align-items: center;
+}
+
+.btn{
+    margin: 30px 25px 0;
+} 
