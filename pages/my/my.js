@@ -26,6 +26,58 @@ Page({
         },
         ]
     },
+
+    //点击头像，注册用户
+    clickLogo(){
+      wx.getUserInfo({
+        success: function (res) {
+          var userInfo = res.userInfo
+          // console.log(userInfo)
+          // wx.setStorageSync(KEY.USER_INFO, userInfo)
+          GP.register(userInfo)
+        },
+        fail(res) {
+          console.log(res)
+          GP.authorize()
+        }
+      })
+    },
+    // 注册
+    register(userInfo) {
+      API.Request({
+        url: API.LITE_REGISTER,
+        method: 'get',
+        data: userInfo,
+        success(res) {
+          GP.setData({
+            userInfo: res.data.user_dict
+          })
+        },
+      });
+    },
+    //用户授权
+    authorize() {
+      wx.showModal({
+        title: '需要授权',
+        content: '请在“用户信息”栏打钩',
+        confirmText: '授权',
+        success(res) { reGetInfo(res) },
+      })
+      function reGetInfo(res) {
+        if (res.confirm)
+          wx.openSetting({
+            success: (res) => {
+              if (!res.authSetting["scope.userInfo"])
+                GP.clickLogo()
+            }
+          })
+      }
+    },
+
+
+
+
+
     formSubmit: function(e) {
       console.log('form发生了submit事件，携带数据为：', e.detail.value)
     },
@@ -46,7 +98,7 @@ Page({
     },
     toVoiceRecord() {
         wx.navigateTo({
-            url: '/pages/ppt/ppt',
+          url: '/pages/record/record',
         })
     },
     
@@ -93,6 +145,9 @@ Page({
         GP = this
 
         GP.setData({ isSign: wx.getStorageSync(KEY.IS_SIGN) == true ? true :false})
+        GP.setData({
+          userInfo: wx.getStorageSync(KEY.USER_INFO)
+        })
         GP.onInit()
     },
 

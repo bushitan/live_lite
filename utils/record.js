@@ -68,7 +68,7 @@ function PlayUrl(url) {
 }
 
 function SetCountDown(GP){
-    var leftTime = 60
+    var leftTime = 59
     intervarID = setInterval(function () {
         GP.setData({
             clock: '录音倒计时：' + leftTime + "秒"

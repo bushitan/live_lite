@@ -2,7 +2,7 @@
 <view  url="" class="xx_menu__node ">
     <view class="xx_menu__node_logo" catchtap="clickLogo">
         <!-- <image src="{{userInfo.logo==''? '../../images/hotapp_01_03.png': userInfo.logo}}"></image> -->
-        <image src="../../images/hotapp_01_03.png"></image>
+        <image src="{{userInfo.avatar_url == ''?'../../images/hotapp_01_03.png' :  userInfo.avatar_url}}"></image>
     </view>
     <view class="xx_menu__node_name">
         <view class="xx_text__title">{{userInfo.nick_name}}</view> 

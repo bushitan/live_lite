@@ -59,6 +59,7 @@
 }
 .content text{
     font-size: 11pt;
+    white-space:normal;
 }
 
 

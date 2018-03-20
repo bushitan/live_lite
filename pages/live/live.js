@@ -27,7 +27,7 @@ Page({
     orientation: "vertical",
     isBegin: false,
     room: LIB.room,
-    isPusher: false,//是否推流权限
+    isTeacher: false,//是否推流权限
     
     pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
     show:{
@@ -72,6 +72,10 @@ Page({
   onLoad(){
       GP = this
       GP.getCurrentRoom()
+
+      GP.setData({
+        userInfo : wx.getStorageSync(KEY.USER_INFO)
+      })
       Script.init(GP)
   },
   //获取当前房间参数
@@ -83,7 +87,7 @@ Page({
             GP.setData({
               imRoomID: res.data.dict_room.im_num,
               room: res.data.dict_room,
-              isPusher: res.data.is_pusher_user,
+              isTeacher: res.data.is_pusher_user,
             })
             GP.jmInit() //IM登陆  
         },
@@ -94,7 +98,7 @@ Page({
     var user_info = wx.getStorageSync(KEY.USER_INFO)
     var userName = "live_app_" + user_info.user_id
     console.log(userName)
-    // var userName = "live_app_3"
+    var userName = "live_app_3"
     var passWord = "123"
     JMessage.init(APP, userName, passWord, GP.listen);
     
@@ -102,7 +106,8 @@ Page({
   
   //监听事件
   listen(){
-    console.log("list")
+
+    //监听单聊信息
     JMessage.JIM.onMsgReceive(function (data) {
       var msg = data;
       var body = data.messages[0].content.msg_body;
@@ -113,19 +118,51 @@ Page({
 
     // 进入聊天室
     JMessage.JIM.enterChatroom({
-      'id': 12500045
+      'id': GP.data.imRoomID
     }).onSuccess(function (data) {
       console.log("进入成功", data)
     }).onFail(function (data) {
       console.log("进入失败", data)
     });
+
+    // !! 聊天室信息监控
     JMessage.JIM.onRoomMsg(function (data) {
-      console.log("聊天室监听", data)
-      console.log(GP.data)
+      if (data.content.msg_body.text == "xx_draw") {
+        GP.setData({
+          drawLine: data.content.msg_body.extras
+        })
+      }
+      else if (data.content.msg_body.text == "xx_clear") {
+        GP.setData({
+          drawLine: data.content.msg_body.extras
+        })
+      }
+      else if (data.content.msg_body.text == "xx_ppt") {
+        GP.setData({
+          bgImageUrl: data.content.msg_body.extras.url
+        })
+      } 
+      else 
+        Script.listenMessage(
+          data.content.msg_body.text,
+          data.content.msg_body.extras.nickname,
+          data.content.msg_body.extras.avatar_url, 
+          data.content.msg_body.extras.is_teacher, 
+        )
+
+      // console.log("聊天室监听", data)
+      // console.log(GP.data)
     });
   },
 
   sendRoomMsg(room_id, content, extras={}){
+   
+    extras['nickname'] = GP.data.userInfo.nick_name
+    extras['gender'] = GP.data.userInfo.gender
+    extras['avatar_url'] = GP.data.userInfo.avatar_url
+    extras['is_teacher'] = GP.data.isTeacher
+      
+
     JMessage.JIM.sendChatroomMsg({  //发送至群聊
       'target_rid': room_id,
       // 'target_rid': APP.globalData.jimimRoomID,
@@ -142,9 +179,16 @@ Page({
   sendMsg(e) {
     console.log(e)
 
-    Script.sendSelf(e) //更新自己的UI
+    //给自己发送信息
+    Script.listenMessage(
+      e.detail,
+      GP.data.userInfo.nick_name,
+      GP.data.userInfo.avatar_url,
+      GP.data.isTeacher
+    ) 
+    //像群里发送信息
     GP.sendRoomMsg(GP.data.imRoomID, e.detail)
-    
+    //TODO 像后台发送信息记录
 
   },
 

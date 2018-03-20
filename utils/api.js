@@ -1,10 +1,10 @@
 var KEY = require('key.js');
 
 // var host_url = 'http://192.168.200.104:8000/live/'
-// var host_url = 'http://192.168.199.204:8000/live/';
+var host_url = 'http://192.168.199.204:8000/live/';
 
 // var host_url = 'http://127.0.0.1:8000/live/'; 
-var host_url = 'https://www.12xiong.top/live/';
+// var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'https://www.12xiong.top/live/';
 
 var wxLoginUrl = host_url + 'lite/login/'
@@ -133,20 +133,23 @@ function _Request(options) {
 }
 
 module.exports = {
-    Request: Request,
-    LITE_LOGIN: host_url + 'lite/login/',
-    LITE_COMPANY_GET_INFO: host_url + 'lite/company/get/info/',
-    LITE_USER_SET_INFO: host_url + 'lite/user/set/info/',
-    LITE_USER_GET_PPT: host_url + 'lite/user/get/ppt/',
+  Request: Request,
+  LITE_LOGIN: host_url + 'lite/login/',
+  LITE_REGISTER: host_url + 'lite/register/',
+  LITE_COMPANY_GET_INFO: host_url + 'lite/company/get/info/',
+  LITE_USER_SET_INFO: host_url + 'lite/user/set/info/',
+  LITE_USER_GET_PPT: host_url + 'lite/user/get/ppt/',
 
-    COVER_TAG_GET_LIST: host_url + 'cover/tag/get_list/',
-    COVER_NEWS_GET_LIST: host_url + 'cover/news/get_list/',
-    COVER_ARTICLE_GET: host_url + 'cover/article/get/',
+  COVER_TAG_GET_LIST: host_url + 'cover/tag/get_list/',
+  COVER_NEWS_GET_LIST: host_url + 'cover/news/get_list/',
+  COVER_ARTICLE_GET: host_url + 'cover/article/get/',
 
-    ROOM_GET: host_url + 'room/get/',
-    ROOM_CHECK_TEACHER: host_url + 'room/check/teacher/',
+  ROOM_GET: host_url + 'room/get/',
+  ROOM_CHECK_TEACHER: host_url + 'room/check/teacher/',
+  ROOM_GET_LIST_BY_APP: host_url + 'room/get_list/app/',
+  ROOM_ADD_MESSAGE: host_url + 'room/add/message/',
 
-    ORDER_CHECK_MEMBER: host_url + 'order/check/member',
+  ORDER_CHECK_MEMBER: host_url + 'order/check/member/',
 
 
     // DAY_INDEX: host_url + 'day365/my/set/clock/',

@@ -1,7 +1,7 @@
 <!-- <button catchtap='clickPPT'>发送ppt</button> --> 
 
 
-<view wx:if="{{!isPusher}}">
+<view wx:if="{{!isTeacher}}">
     <!-- <view wx:if="{{room.style == ROOM_PREPARE}}">
         <template is="room_prepare" data="{{room}}" />
     </view>  -->

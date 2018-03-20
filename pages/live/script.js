@@ -8,24 +8,39 @@ module.exports = new (function () {
     GP = _GP
   }
   //更新自己的栏目
-  this.sendSelf = function (e) {
-    console.log(e.detail)
-    var value = e.detail
-    var talk = {
-      content: value,
+  // this.sendSelf = function (content, nickname, avatar_url, is_teacher) {
+  //   console.log(e.detail)
+  //   var value = e.detail
+  //   var talk = {
+  //     content: value,
+  //     content_type: 0,
+  //     contract_info: '',
+  //     myDate: '',
+  //     role: !is_teacher,
+  //     img: "../../images/hotapp_01_07.png"
+  //   }
+  //   var list = GP.data.feedback
+  //   list.push(talk)
+  //   GP.setData({
+  //     feedback: list
+  //   })
+  // }
+
+  this.listenMessage = function (content, nickname, avatar_url ,is_teacher){
+    var msg = {
+      content: content,
       content_type: 0,
       contract_info: '',
       myDate: '',
-      role: true,
-      img: "../../images/hotapp_01_07.png"
+      role: !is_teacher,
+      img: avatar_url
     }
     var list = GP.data.feedback
-    list.push(talk)
+    list.push(msg)
     GP.setData({
       feedback: list
     })
   }
-
 
   this.ChangePlayer = function (index) {
     switch (index) {

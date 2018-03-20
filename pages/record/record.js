@@ -21,7 +21,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-        currentTabList: ["最新通知", "学习天地"],
+        currentTabList: [],
         audioList:[],
         //上传
         isUpdate: false,
@@ -84,14 +84,59 @@ Page({
 
     /**上传录音 */
     uploadRecord() {
-        QINIU.UploadAudio(GP, RECORD.GetAudioFile())
+        // QINIU.UploadAudio(GP, RECORD.GetAudioFile())
 
+
+      var MESSAGE_TEXT = 0,
+      MESSAGE_IMAGE = 1,
+      MESSAGE_AUDIO = 2,
+      YES = 1,
+      NO = 0
+      API.Request({
+        url: API.ROOM_ADD_MESSAGE,
+        data: {
+          "style": MESSAGE_AUDIO,
+          "is_teacher":YES,
+          "audio_url": "http://123..wfdskl",
+          "text": "23132",
+        },
+        success: function (res) {
+          console.log(res.data)
+          // var _tab_list = []
+          // for (var i = 0; i < res.data.room_list.length; i++)
+          //   _tab_list.push(res.data.room_list[i].name)
+
+          // GP.setData({
+          //   currentTabList: _tab_list,
+          //   roomList: res.data.room_list
+          // })
+          // GP.getCoverList(res.data.list_tag[0].tag_id)
+        }
+      })
     },
 
     
     onLoad(){
-        GP = this
-        RECORD.Init(GP)  //配置录音参数
+      GP = this
+      RECORD.Init(GP)  //配置录音参数
+
+      //获取房间列表
+      API.Request({
+        url: API.ROOM_GET_LIST_BY_APP,
+        success: function (res) {
+          console.log(res.data.list_tag)
+          var _tab_list = []
+          for (var i = 0; i < res.data.room_list.length; i++)
+            _tab_list.push(res.data.room_list[i].name)
+
+          GP.setData({
+            currentTabList: _tab_list,
+            roomList: res.data.room_list
+          })
+          // GP.getCoverList(res.data.list_tag[0].tag_id)
+        }
+      })
+      
     },
 
 
