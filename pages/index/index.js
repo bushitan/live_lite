@@ -26,7 +26,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         GP.setData({
-          room: res.data.dict_room,
+          room: res.data.room_dict,
           isPusher: res.data.is_pusher_user,
         })
       },

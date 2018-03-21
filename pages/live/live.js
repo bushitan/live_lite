@@ -29,7 +29,7 @@ Page({
     room: LIB.room,
     isTeacher: false,//是否推流权限
     
-    pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
+    pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验","留言提问"],
     show:{
       Pusher: true,
       IM: true,
@@ -39,8 +39,9 @@ Page({
       Painter: false,
       Gallery:false,
     },
-    feedback: LIB.feedback ,
 
+    // feedback: LIB.feedback ,
+    messageList:[], //IM信息
     playerTab: ["群聊", "电子白板"],
     showPlayerIM: true,
     showPlayerPainter: false,
@@ -66,9 +67,6 @@ Page({
   },
 
 
-
-
-
   onLoad(){
       GP = this
       GP.getCurrentRoom()
@@ -81,18 +79,53 @@ Page({
   //获取当前房间参数
   getCurrentRoom(){
     API.Request({
-        url: API.ROOM_GET,
-        success:function(res){
-            console.log(res.data)
-            GP.setData({
-              imRoomID: res.data.dict_room.im_num,
-              room: res.data.dict_room,
-              isTeacher: res.data.is_pusher_user,
-            })
-            GP.jmInit() //IM登陆  
-        },
+      url: API.ROOM_GET,
+      success:function(res){
+          console.log(res.data)
+          GP.setData({
+            imRoomID: res.data.room_dict.im_num,
+            room: res.data.room_dict,
+            messageList: res.data.message_list,
+            isTeacher: res.data.is_pusher_user,
+          })
+          GP.jmInit() //IM登陆  
+      },
     })
   },
+
+
+  //点击发送按钮事件
+  sendMsg(e) {
+    console.log(e)
+    //给自己发送信息
+    Script.listenMessage(
+      GP.data.userInfo.nick_name,
+      GP.data.userInfo.avatar_url,
+      GP.data.isTeacher,
+      KEY.MESSAGE_TEXT,
+      e.detail,
+    )
+    //像群里发送信息
+    GP.sendRoomMsg(GP.data.imRoomID, e.detail)
+
+
+    //TODO 像后台发送信息记录
+    API.Request({
+      url: API.ROOM_ADD_MESSAGE,
+      data: {
+        "room_id": GP.data.room.room_id,
+        "style": KEY.MESSAGE_TEXT,
+        "is_teacher": GP.data.isTeacher? KEY.YES : KEY.NO,
+        "content": e.detail,
+      },
+      success: function (res) {
+        console.log("存储消息成功")
+      },
+    })
+  },
+
+
+
   //IM初始化
   jmInit(){
     var user_info = wx.getStorageSync(KEY.USER_INFO)
@@ -174,22 +207,6 @@ Page({
     }).onFail(function (data) {
       console.log(data)
     });
-  },
-
-  sendMsg(e) {
-    console.log(e)
-
-    //给自己发送信息
-    Script.listenMessage(
-      e.detail,
-      GP.data.userInfo.nick_name,
-      GP.data.userInfo.avatar_url,
-      GP.data.isTeacher
-    ) 
-    //像群里发送信息
-    GP.sendRoomMsg(GP.data.imRoomID, e.detail)
-    //TODO 像后台发送信息记录
-
   },
 
   //绘画完成

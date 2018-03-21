@@ -6,14 +6,14 @@
         <template is="room_prepare" data="{{room}}" />
     </view>  -->
     <view >
-        <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx"></xx-live-player> 
+        <xx-live-player feedback="{{feedback}}"  src="{{room.player_url}}" height="400rpx"></xx-live-player> 
         <view class='bg'>        
             <xx-tab list="{{playerTab}}" bind:click="clickPlayerTab" colorunselect="#888" colorselect="#efa234" />
         </view>
         <view class='painter' wx:if="{{showPlayerPainter}}">
             <xx-painter  drawLine="{{drawLine}}" height="calc(100vh - 400rpx - 75px)" bg="{{bgImageUrl}}"  tool="{{false}}"/>
         </view>
-        <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{showPlayerIM}}"></xx-im>             
+        <xx-im feedback="{{feedback}}" message="{{messageList}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{showPlayerIM}}"></xx-im>             
     </view> 
 </view>
 
@@ -22,7 +22,7 @@
         <xx-tab list="{{pusherTab}}" bind:click="clickPusherTab" initindex="{{tagIndex}}" mode="scroll" colorunselect="#888" colorselect="#efa234" />
     </view>
     <xx-live-pusher src="{{room.pusher_url}}" height="400rpx" menu="{{show.PusherMenu}}" wx:if="{{show.Pusher}}"></xx-live-pusher> 
-    <xx-im feedback="{{feedback}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{show.IM}}"></xx-im>   
+    <xx-im feedback="{{feedback}}"  message="{{messageList}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{show.IM}}"></xx-im>   
     <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx" wx:if="{{show.Player}}"></xx-live-player> 
     
 

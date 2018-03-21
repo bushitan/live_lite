@@ -8,7 +8,7 @@ Component({
             type: String,
             value: "rtmp://live.12xiong.top/AppName/StreamName",
         },
-        feedback: {
+        messages: {
             type: Array,
             value: [],
             // observer: '_changeMessage',

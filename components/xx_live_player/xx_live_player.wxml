@@ -18,7 +18,7 @@
              <template is="menu_full" data="{{isShowMenu,isPlay,isVoice}}"   wx:if="{{isFullScreen}}"></template>
              <template is="menu_lite" data="{{isShowMenu,isPlay,isVoice}}"  wx:else></template>
             <!-- 信息 -->
-            <template is="message" data="{{feedback:foo.msg(feedback)}}" wx:if="{{isFullScreen && isShowMessage}}"></template> 
+            <template is="message" data="{{messages:foo.msg(messages)}}" wx:if="{{isFullScreen && isShowMessage}}"></template> 
     </live-player> 
 </view>
 
@@ -63,10 +63,10 @@
 
     <template name="message">  
         <cover-view class='message'  catchtap='showMenu'>
-            <block wx:for="{{foo.msg(feedback)}}" wx:key="index">
+            <block wx:for="{{foo.msg(messages)}}" wx:key="index">
                 <cover-view class='node {{index==0 ? "first":"seconde"}}'>
                     <cover-view class='logo'>
-                        <cover-image  catchtap='' src="{{item.img}}" />
+                        <cover-image  catchtap='' src="{{item.user.avatarUrl}}" />
                     </cover-view>
                     <cover-view  class='content'>{{item.content}}</cover-view>
                 </cover-view>
