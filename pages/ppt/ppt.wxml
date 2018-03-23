@@ -1,5 +1,21 @@
 
 
-<block wx:for="{{pptList}}">
+
+<view class="tab">
+    <tab list="{{currentTabList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
+</view>
+<!-- <block wx:for="{{pptList}}">
   <image src='{{item.url}}'></image>
+</block> -->
+
+
+<block wx:for="{{pptList}}">
+    <view class='xx_gride xx_m_t15'>
+        <image catchtap='clickEmoji'  data-image_url="{{item.url}}"
+        class='xx_gride__image' src='{{item.url}}' mode='aspectFit'  ></image>
+        <!-- <view class='btn'> 
+        <button size='mini' catchtap='clickBtn' data-index="{{index}}">选择</button>
+        </view> -->
+    </view>
 </block>
+<!-- + "?imageMogr2/thumbnail/81x81"}} -->

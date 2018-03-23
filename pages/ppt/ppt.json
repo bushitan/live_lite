@@ -1,5 +1,5 @@
 {
     "usingComponents":{
-        "mark": "../../components/xx_mark/xx_mark"        
+      "tab": "../../components/xx_tab/xx_tab"        
     }
 }

@@ -25,8 +25,9 @@
     <xx-im feedback="{{feedback}}"  message="{{messageList}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" wx:if="{{show.IM}}"></xx-im>   
     <xx-live-player feedback="{{feedback}}" src="{{room.player_url}}" height="400rpx" wx:if="{{show.Player}}"></xx-live-player> 
     
-
-    <xx-gallery catchchoice="sendPPT"  wx:if="{{show.Gallery}}" ></xx-gallery>
+    <view wx:if="{{show.Gallery}}">
+      <xx-gallery catchchoice="sendPPT" list="{{pptList}}"  ></xx-gallery>
+    </view>
     <view class='painter'   wx:if="{{show.Painter}}">
         <xx-painter height="calc(100vh - 400rpx - 75px)"
  catchcomplete="sendDraw" catchclear="sendClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter>  

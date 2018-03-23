@@ -59,6 +59,50 @@
     background-color:#179B16;
 }
 
+
+
+/* 提问板块 */
+.board{
+     position: fixed;
+    bottom: 41px;
+    right: 2px; 
+    padding: 10px;
+    font-size: 10pt;
+    background-color: #fff;
+    opacity: 0.7;
+    border-radius:2px; 
+}
+.board scroll-view{
+
+    white-space: nowrap;
+    overflow:hidden;
+}
+.board .node{
+    width: 250rpx;
+    white-space:normal;
+    word-wrap:break-word;
+}
+.board .mp_15{
+    margin-bottom:10px; 
+}
+
+.board_close{
+    text-align: right;
+}
+.board_switch{
+    
+    position: fixed;
+    bottom: 40px;
+    right: 0px;
+    padding: 15px;
+    font-size: 10pt;
+    background-color: #fff;
+    opacity: 0.7;
+}
+
+
+
+
 /* 新的IM */
 .page-wrap {
     display: flex;
@@ -115,15 +159,18 @@
 }
 .text .nickname {
     color: #737373;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10pt !important;
     margin-bottom: 6rpx;
 }
 .text .content {
     border: #ccc 1rpx solid;
     border-radius: 4px;
     background: #fff;
-    font-size: 36rpx;
-    line-height: 36rpx;
+    /* font-size: 36rpx;
+    line-height: 36rpx; */
+    font-size: 11pt !important; 
+    line-height: 11pt !important;
     padding: 20rpx;
     position: relative;
 }
@@ -222,6 +269,7 @@
     color: #737373;
     font-size: 14px;
     margin-bottom: 6rpx;
+    text-align: right !important;
 }
 
 @media (max-width : 360px) {

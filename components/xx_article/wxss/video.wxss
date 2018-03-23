@@ -3,7 +3,7 @@ xx_video{
     width: 750rpx;
     height:422rpx;
 }
-.title{
+/* .title{
     font-size: 14pt;
     color: #151515;
 }
@@ -11,6 +11,29 @@ xx_video{
 .summary{
     font-size: 11pt;
     color: #8d8d8d;
+} */
+
+ .title {
+    text-align: left;
+    font-size: 14pt;
+    font-weight: bold;   
+    /* color: #044cab; */    
+}
+
+
+ .summary{
+     margin:15px 0 0;  
+    text-align: left;
+    font-size: 9pt;
+    color: #8d8d8d;
+}
+ .summary label{
+    margin-right: 10px;
+}
+
+ .content {
+    margin: 20px 0 0; 
+    font-size: 11pt;
 }
 
 

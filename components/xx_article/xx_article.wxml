@@ -20,7 +20,7 @@
     <template is="mode_audio" data="{{article: content }}" />  
 </view>
 
-<view wx:if="{{mode == MODE_LIVE}}">
+ <view wx:if="{{mode == MODE_LIVE}}">
     <import src="wxml/live.wxml"/>
     <template is="mode_live" data="{{article: content }}" />  
-</view>
+</view> 

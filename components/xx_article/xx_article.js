@@ -1,8 +1,8 @@
 
 Component({
-  /**
-   * 组件的属性列表
-   */
+    /**
+     * 组件的属性列表
+     */
     properties: {
         mode: {
             type: String,
@@ -14,7 +14,7 @@ Component({
             value: [],
             // observer: '_changeList',
         },
-  },
+    },
 
   /**
    * 组件的初始数据

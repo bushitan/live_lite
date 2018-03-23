@@ -29,7 +29,7 @@ Page({
     room: LIB.room,
     isTeacher: false,//是否推流权限
     
-    pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验","留言提问"],
+    pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
     show:{
       Pusher: true,
       IM: true,
@@ -70,12 +70,27 @@ Page({
   onLoad(){
       GP = this
       GP.getCurrentRoom()
-
+      GP.getPPT() //获取PPT信息
       GP.setData({
         userInfo : wx.getStorageSync(KEY.USER_INFO)
       })
       Script.init(GP)
   },
+
+  getPPT(){
+    API.Request({
+      url: API.LITE_USER_GET_PPT,
+      success: function (res) {
+        console.log(res)
+        GP.setData({
+          pptList: res.data.ppt_list,
+          // pptTagList: res.data.ppt_list,
+        })
+      }
+    })
+  },
+
+
   //获取当前房间参数
   getCurrentRoom(){
     API.Request({
@@ -158,22 +173,28 @@ Page({
       console.log("进入失败", data)
     });
 
+    // var MSG_TYPE_PPT = "xx_ppt"
+    // var MSG_TYPE_DRAW = "xx_draw"
+    // var MSG_TYPE_CLEAR = "xx_clear"
     // !! 聊天室信息监控
     JMessage.JIM.onRoomMsg(function (data) {
-      if (data.content.msg_body.text == "xx_draw") {
+        if (data.content.msg_body.text == MSG_TYPE_DRAW) {
         GP.setData({
           drawLine: data.content.msg_body.extras
         })
       }
-      else if (data.content.msg_body.text == "xx_clear") {
+        else if (data.content.msg_body.text == MSG_TYPE_CLEAR) {
         GP.setData({
           drawLine: data.content.msg_body.extras
         })
       }
-      else if (data.content.msg_body.text == "xx_ppt") {
-        GP.setData({
-          bgImageUrl: data.content.msg_body.extras.url
-        })
+        //学员接受到PPT信息，1、切换电子白板的tag，2、设置图片src
+        else if (data.content.msg_body.text == MSG_TYPE_PPT) {
+            Script.ChangePusher(1)
+            GP.setData({
+                tagIndex: 1,
+                bgImageUrl: data.content.msg_body.extras.url,
+            })
       } 
       else 
         Script.listenMessage(
@@ -230,8 +251,9 @@ Page({
     var mode = new LIB.Mode(GP)
     // message.sendPPT({ url: imageUrl })
     GP.sendRoomMsg(GP.data.imRoomID, MSG_TYPE_PPT, { url: imageUrl })
-    mode.painter()
+    // mode.painter()
     GP.setData({ tagIndex: 1 })
+    Script.ChangePusher(1)
     // 提示成功
     wx.showToast({
       title: '设置ppt成功',

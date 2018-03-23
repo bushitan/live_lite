@@ -1,6 +1,10 @@
 /* pages/article_video/article_video.wxss */
 
-video{
+.video{
+    width: 750rpx;
+    height:422rpx;
+}
+.video video{
     width: 750rpx;
     height:422rpx;
 }

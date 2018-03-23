@@ -3,7 +3,7 @@
         <block wx:for="{{list}}" wx:key="item">
             <view class='xx_list__node'  catchtap='click' data-index="{{index}}">
                 <view class='xx_list__cover'>
-                    <image src='{{item.cover_url}}'></image>
+                    <image src='{{item.cover_url}}'  mode='widthFix' ></image>
                 </view>
                 <view>
                     <view class='xx_list__title xx_text__center'>{{item.title}}</view>

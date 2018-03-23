@@ -19,30 +19,31 @@
 //     },
 //   },
 // ]
+// feedback:{
+//     type:Array,
+//     value: [ ],
+//     observer:"_addMessage",
+// },
+// pusher: {
+//     type: Boolean,
+//     value: false,
+// },
 Component({
   /**
    * 组件的属性列表
    */
-  properties: {
-        feedback:{
-            type:Array,
-            value: [ ],
-            observer:"_addMessage",
-        },
+    properties: {
         height:{
             type:String,
             value: "100vh",
         },
-        pusher: {
-            type: Boolean,
-            value: false,
-        },
         message: {
-          type: Array,
-          value: [],
-          observer:"addMessage",
+            type: Array,
+            value: [],
+            observer:"addMessage",
         },
-  },
+
+    },
 
   /**
    * 组件的初始数据
@@ -61,6 +62,9 @@ Component({
     MESSAGE_TEXT : 0,
     MESSAGE_IMAGE : 1,
     MESSAGE_AUDIO : 2,
+    YES:1,
+    NO:0,
+    showBoard:true,
   },
 
   // 组件加载完毕
@@ -72,6 +76,12 @@ Component({
   * 组件的方法列表
   */
   methods: {
+    clickBoard(){
+        this.setData({
+            showBoard: !this.data.showBoard
+        })
+    },
+
     /**
      * 语音发送
      */

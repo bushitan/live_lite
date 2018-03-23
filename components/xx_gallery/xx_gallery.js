@@ -3,15 +3,19 @@ Component({
   /**
    * 组件的属性列表
    */
-    properties: {
-        title: {
-            type: String,
-            value: "标记",
-        },
-        color: {
-            type: String,
-            value: "#000",
-        }
+  properties: {
+    list: {
+      type: Array,
+      value: [],
+    },
+    title: {
+        type: String,
+        value: "标记",
+    },
+    color: {
+        type: String,
+        value: "#000",
+    }
   },
 
   /**
@@ -42,7 +46,7 @@ Component({
     },
     clickBtn(e) {
       var index = e.currentTarget.dataset.index
-      this.triggerEvent('choice', this.data.coverList[index].image_url);
+      this.triggerEvent('choice', this.data.list[index].url);
     },
   }
 })

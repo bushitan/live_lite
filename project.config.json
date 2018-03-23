@@ -55,6 +55,18 @@
 					"name": "录制",
 					"pathName": "pages/record/record",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ppt",
+					"pathName": "pages/ppt/ppt",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "article_live",
+					"pathName": "pages/article/article",
+					"query": "article_id=1"
 				}
 			]
 		}

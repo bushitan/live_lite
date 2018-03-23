@@ -20,14 +20,14 @@
 <template name="manage">
   <view style='height:15px;'></view>
   <view class='bg_white page__p_15'>
-    <xx-navigte   catchclick="toLivePhone">
+    <!-- <xx-navigte   catchclick="toLivePhone">
         <view slot="left" >创建1v1教室</view>
     </xx-navigte>
       <view class='xx_line__gray '></view> 
     <xx-navigte   catchclick="toPPT">
         <view slot="left" >PPT/图库</view>
     </xx-navigte>
-      <view class='xx_line__gray '></view> 
+      <view class='xx_line__gray '></view>  -->
     <xx-navigte   catchclick="toVoiceRecord">
         <view slot="left" >声音录制</view>
     </xx-navigte>
