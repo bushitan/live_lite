@@ -1,9 +1,9 @@
 var KEY = require('key.js');
 
-// var host_url = 'http://192.168.200.104:8000/live/'
-var host_url = 'http://192.168.199.204:8000/live/';
+// var host_url = 'http://192.168.200.105:8000/live/'
+// var host_url = 'http://192.168.199.204:8000/live/';
 
-// var host_url = 'http://127.0.0.1:8000/live/'; 
+var host_url = 'http://127.0.0.1:8000/live/'; 
 // var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'https://www.12xiong.top/live/';
 
@@ -145,6 +145,7 @@ module.exports = {
   COVER_ARTICLE_GET: host_url + 'cover/article/get/',
 
   ROOM_GET: host_url + 'room/get/',
+  ROOM_GET_COVER: host_url + 'room/get/cover/',
   ROOM_CHECK_TEACHER: host_url + 'room/check/teacher/',
   ROOM_GET_LIST_BY_APP: host_url + 'room/get_list/app/',
   ROOM_ADD_MESSAGE: host_url + 'room/add/message/',

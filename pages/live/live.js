@@ -91,22 +91,24 @@ Page({
   },
 
 
-  //获取当前房间参数
-  getCurrentRoom(){
-    API.Request({
-      url: API.ROOM_GET,
-      success:function(res){
-          console.log(res.data)
-          GP.setData({
-            imRoomID: res.data.room_dict.im_num,
-            room: res.data.room_dict,
-            messageList: res.data.message_list,
-            isTeacher: res.data.is_pusher_user,
-          })
-          GP.jmInit() //IM登陆  
-      },
-    })
-  },
+    //获取当前房间参数
+    getCurrentRoom(){
+        API.Request({
+        url: API.ROOM_GET,
+        success:function(res){
+            console.log(res.data)
+            GP.setData({
+                imRoomID: res.data.app_dict.im_num,
+                appDict: res.data.app_dict,
+                
+                room: res.data.room_dict,
+                messageList: res.data.message_list,
+                isTeacher: res.data.is_teacher,
+            })
+            GP.jmInit() //IM登陆  
+        },
+        })
+    },
 
 
   //点击发送按钮事件
@@ -121,7 +123,7 @@ Page({
       e.detail,
     )
     //像群里发送信息
-    GP.sendRoomMsg(GP.data.imRoomID, e.detail)
+    GP.sendRoomMsg(e.detail)
 
 
     //TODO 像后台发送信息记录
@@ -141,16 +143,17 @@ Page({
 
 
 
-  //IM初始化
-  jmInit(){
-    var user_info = wx.getStorageSync(KEY.USER_INFO)
-    var userName = "live_app_" + user_info.user_id
-    console.log(userName)
-    var userName = "live_app_3"
-    var passWord = "123"
-    JMessage.init(APP, userName, passWord, GP.listen);
-    
-  },
+    //IM初始化
+    jmInit(){
+        var appID = GP.data.appDict.id
+        var user_info = wx.getStorageSync(KEY.USER_INFO)
+        var userName = "live_app_" + appID + "_user_" + user_info.user_id
+        console.log(userName)
+        // var userName = "live_app_3"
+        var passWord = "123"
+        JMessage.init(APP, userName, passWord, GP.listen);
+        
+    },
   
   //监听事件
   listen(){
@@ -209,7 +212,7 @@ Page({
     });
   },
 
-  sendRoomMsg(room_id, content, extras={}){
+  sendRoomMsg( content, extras={}){
    
     extras['nickname'] = GP.data.userInfo.nick_name
     extras['gender'] = GP.data.userInfo.gender
@@ -218,11 +221,10 @@ Page({
       
 
     JMessage.JIM.sendChatroomMsg({  //发送至群聊
-      'target_rid': room_id,
-      // 'target_rid': APP.globalData.jimimRoomID,
-      'content': content,
-      'content': content,
-      'extras': extras
+        'target_rid': GP.data.imRoomID,
+        'content': content,
+        'content': content,
+        'extras': extras
     }).onSuccess(function (data, msg) {
       console.log(data)
     }).onFail(function (data) {
@@ -232,11 +234,11 @@ Page({
 
   //绘画完成
   sendDraw(e) {
-    GP.sendRoomMsg(GP.data.imRoomID, MSG_TYPE_DRAW,e.detail)
+    GP.sendRoomMsg( MSG_TYPE_DRAW,e.detail)
   },
   //点击清除画布按钮
   sendClear(e) {
-    GP.sendRoomMsg(GP.data.imRoomID, MSG_TYPE_CLEAR, e.detail)
+    GP.sendRoomMsg(MSG_TYPE_CLEAR, e.detail)
     // var clearObj = e.detail
     // message.sendClear(clearObj)
   },
@@ -250,7 +252,7 @@ Page({
     // ppt菜单 切换到 电子白板
     var mode = new LIB.Mode(GP)
     // message.sendPPT({ url: imageUrl })
-    GP.sendRoomMsg(GP.data.imRoomID, MSG_TYPE_PPT, { url: imageUrl })
+    GP.sendRoomMsg( MSG_TYPE_PPT, { url: imageUrl })
     // mode.painter()
     GP.setData({ tagIndex: 1 })
     Script.ChangePusher(1)

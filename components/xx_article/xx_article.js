@@ -10,9 +10,9 @@ Component({
             // observer: '_changeStyle',
         },
         content: {
-            type: String,
+            type: Object,
             value: [],
-            // observer: '_changeList',
+            observer: '_changeContent',
         },
     },
 
@@ -32,7 +32,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+      _changeContent(_new,_old){
+          console.log(_new,213, _old)
+      },
       // 改变等级
     //   _changeStyle(newVal, oldVal) {
     //         // console.log(1111,newVal, oldVal)

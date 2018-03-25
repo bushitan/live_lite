@@ -1,5 +1,5 @@
 
-xx_video{
+.xx_video{
     width: 750rpx;
     height:422rpx;
 }

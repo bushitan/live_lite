@@ -14,7 +14,6 @@
     <import src="wxml/video.wxml"/>
     <template is="mode_video" data="{{article: content }}" />  
 </view>
-
 <view wx:if="{{mode == MODE_AUDIO}}">
     <import src="wxml/audio.wxml"/>
     <template is="mode_audio" data="{{article: content }}" />  

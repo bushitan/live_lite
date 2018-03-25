@@ -22,12 +22,12 @@ Page({
 
   onInit() {
     API.Request({
-      url: API.ROOM_GET,
+        url: API.ROOM_GET_COVER,
       success: function (res) {
         console.log(res.data)
         GP.setData({
           room: res.data.room_dict,
-          isPusher: res.data.is_pusher_user,
+          isTeacher: res.data.is_teacher,
         })
       },
     })
