@@ -12,7 +12,7 @@ Page({
   onReady() {
     GP = this
     GP.onInit()
-    APP.checkMember(GP.success)
+    // APP.checkMember(GP.success)
   },
   success(res){
     GP.setData({
@@ -35,11 +35,11 @@ Page({
 
   toLive(){
     wx.navigateTo({
-      url: '/pages/live/live',
+        url: '/pages/live_student/live_student',
     })
   },
   //封面 预约按钮
-  prepare() {
+  prepar() {
     wx.showModal({
       title: '预约成功',
       content: '请按时观看直播',

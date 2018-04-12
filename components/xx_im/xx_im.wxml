@@ -1,13 +1,15 @@
 
     
-    <scroll-view class="chat-container" scroll-y id="scroll" scroll-into-view="{{lastMessageId}}"
+    <scroll-view class="chat-container" scroll-y id="scroll" scroll-into-view="{{toview}}"
     scroll-top="0" scroll-y="true" style='height:calc( {{height}} - 39px)' >
         <view wx:for="{{message}}" wx:for-item="item" wx:key="id" id="{{item.id}}"  class="message {{item.style}}">
             <view wx:if="{{item.is_teacher==1}}" class="user-message {{item.is_teacher ? 'other' : 'me'}}">
+                <view>
                 <image class="avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
+                </view>
                 <view class="text">
                     <view class="nickname">{{item.nick_name}}</view>
-                    <view class="content">{{item.content}}</view>
+                    <view class="content"> <text>{{item.content}}</text></view>
                 </view>
             </view>
             <!-- scroll-into-view="{{lastMessageId}}"  -->
@@ -15,9 +17,9 @@
             <!-- <view wx:if="{{item.style == 'system'}}" class="system-message">
                 {{item.content}}
             </view> -->
-
         </view>
         <view style='height:10px'></view>
+         <view id='scroll-bottom' wx:if="{{toview}}"></view>
     </scroll-view>
 
 

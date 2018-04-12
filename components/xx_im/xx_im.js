@@ -156,6 +156,7 @@ Component({
         //     })
         //     return
         // }
+        // this.toBottom()
         this.triggerEvent('send', this.data.inputValue );  
         this.setData({
             inputValue: ""
@@ -171,10 +172,13 @@ Component({
           console.log(res)
           // console.log(res)
           // res.top // 这个组件内 #the-id 节点的上边界坐标
+        //   that.setData({
+        //       scrollTop: 1000000
+        //       // scrollTop: res.bottom
+        //   })
           that.setData({
-              scrollTop: 1000000
-              // scrollTop: res.bottom
-          })
+              toview: 'scroll-bottom'
+          });
       }).exec()
     },
 

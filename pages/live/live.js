@@ -27,7 +27,7 @@ Page({
     orientation: "vertical",
     isBegin: false,
     room: LIB.room,
-    isTeacher: false,//是否推流权限
+    isTeacher: true,//是否推流权限
     
     pusherTab: ["推流", "电子白板", "PPT", "参数设置", "直播校验"],
     show:{

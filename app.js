@@ -1,14 +1,11 @@
 //app.js
 // var IM = require('im/im.js')
+var JMessage = require('utils/im/jm.js')
 var API = require('utils/api.js');
 var GP
 App({
     onLaunch: function () {
         GP = this
-        // var _userName = "bushitan4"
-        // var _secret = "123"
-        // GP.globalData.jim = new IM.Jim(this, _userName, _secret, GP.imSuccess)
-
     },
     onLoad(){
         GP.onInit()
@@ -24,34 +21,59 @@ App({
             }
         })
     },
-
-    // imSuccess(data) {
-    //     GP.globalData.jimIsLogin = true
-    //     // 绑定监听
-    //     GP.globalData.jim.onMsgReceive(function (data) {
-    //         console.log("一般监听", data)
-    //     });
-
-    //     GP.globalData.jim.onRoomMsg(function (data) {
-    //         console.log("聊天室监听", data)
-    //     });
-
-    //     // 进入聊天室
-    //     GP.globalData.jim.enterChatroom({
-    //         'id': GP.globalData.jimRoomID
-    //     }).onSuccess(function (data) {
-    //         console.log("进入成功", data)
-    //     }).onFail(function (data) {
-    //         console.log("进入失败", data)
-    //     });
-    // },
-    
+  
     globalData: {
         userInfo: null,
+        baseAccount:"live_hx_user_",
+        passWord:"123",
         jim: null,
         jimRoomID: '12510285' ,
         jimIsLogin:false,
-    }
+    },
+
+
+
+    // 初始化IM
+    initIM(teacherName, passWord) {
+        // tempPage = _GP
+        JMessage.init("", teacherName, passWord, GP.IMSuccess);
+        this.globalData.JMessage = JMessage
+        
+
+    },
+
+    // IM登陆成功
+    IMSuccess() {
+        this.globalData.currentPage.IMSuccess() //登陆成功事件
+    },
+
+            // Script.listenMessage(
+            //     data.content.msg_body.text,
+            //     data.content.msg_body.extras.nickname,
+            //     data.content.msg_body.extras.avatar_url,
+            //     data.content.msg_body.extras.is_teacher,
+            // )
+    onRoomMessage(data){
+        
+        var list = GP.data.messageList
+        ++msg_id
+        var id = "a" + msg_id
+        list.push({
+            id: id,
+            nick_name: nick_name,
+            avatar_url: avatar_url,
+            is_teacher: is_teacher,
+            style: style,
+            content: content,
+            audio_url: audio_url,
+            image_url: image_url,
+        }, )
+        GP.setData({
+            messageList: list,
+        })
+    },
+
+
 })
 
 
@@ -65,3 +87,17 @@ App({
 //     }
 //     ]
 // },
+
+// "tabBar": {
+//     "list": [{
+//         "pagePath": "pages/index/index",
+//         "text": "直播"
+//     }, {
+//         "pagePath": "pages/cover/cover",
+//         "text": "专栏"
+//     }, {
+//         "pagePath": "pages/my/my",
+//         "text": "报名"
+//     }
+//     ]
+// }

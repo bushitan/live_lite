@@ -229,6 +229,9 @@
 .text .content.img image {
     max-width: 100%;
 }
+.text text{
+    line-height: 15pt;
+}
 
 .input-panel {
     height: 100rpx;

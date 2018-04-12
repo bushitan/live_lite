@@ -180,6 +180,18 @@ Page({
      * 2、 供求、花名册、会员，没有点播
      */
     onInit: function (options) {
+
+        API.Request({
+            url: API.LITE_COMPANY_GET_INFO,
+            success: function (res) {
+                console.log(res.data.company_dict)
+                GP.setData({
+                    companyInfo: res.data.company_dict
+                })
+            }
+        })
+
+
         // API.Request({
         //     url: API.MEET_SIGN_GET_INFO,
         //     success: function (res) {
@@ -189,17 +201,18 @@ Page({
         //         })
         //     }
         // })
+        
 
         // 获取入场券信息
-        API.Request({
-          url: API.ROOM_CHECK_TEACHER,
-          success: function (res) {
-            console.log(res)
-            GP.setData({
-              isTeacher: res.data.is_teacher
-            })
-          }
-        })
+        // API.Request({
+        //   url: API.ROOM_CHECK_TEACHER,
+        //   success: function (res) {
+        //     console.log(res)
+        //     GP.setData({
+        //       isTeacher: res.data.is_teacher
+        //     })
+        //   }
+        // })
         
     },
 
@@ -248,6 +261,20 @@ Page({
         })
     },
 
+    clickAddress() {
+
+        wx.openLocation({
+            latitude: GP.data.companyInfo.latitude,
+            longitude: GP.data.companyInfo.longitude,
+            // scale: 28
+        })
+    },
+
+    clickPhone(){
+        wx.makePhoneCall({
+            phoneNumber: GP.data.companyInfo.phone,
+        })
+    },
 
 
 })

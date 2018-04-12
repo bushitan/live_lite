@@ -119,6 +119,22 @@ module.exports = new (function () {
         }, 1000);
       });
     };
+
+
+    this.sendSingleCustom = function (username, custom) {
+        jim.sendSingleCustom({
+            'target_username': username,
+            'custom': custom,
+            'need_receipt': true
+        }).onSuccess(function (data) {
+            console.log(data)
+        }).onFail(function (data) {
+            var re = that.data.logInfo + 'fail:' + JSON.stringify(data);
+            that.setData({
+                logInfo: re
+            });
+        });
+    }
     
 })();
 
