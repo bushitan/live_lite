@@ -27,7 +27,7 @@ Page({
         orientation: "vertical",
         // isBegin: false,
         // room: LIB.room,
-        isTeacher: true,//是否推流权限
+        isTeacher: false,//是否推流权限
         messageList:[], //IM信息
 
         pusherTab: ["推流", "视频设置",],
@@ -37,8 +37,9 @@ Page({
         var index = e.detail
         GP.setData({index:index})
     },
-
-    onLoad(){
+    onLoad(){},
+    onShow() {
+        // console.log('onshow')
         GP = this
         APP.globalData.currentPage = this
         GP.getCurrentRoom()
@@ -47,11 +48,35 @@ Page({
         })
         Script.init(GP)
 
-        if (APP.globalData.JMessage == null) 
+    },
+
+    //获取当前房间参数
+    getCurrentRoom() {
+        // console.log('in api get room')
+        API.Request({
+            url: API.ROOM_GET,
+            success: function (res) {
+                // console.log(res.data)
+                GP.setData({
+                    imRoomID: res.data.app_dict.im_num,
+                    appDict: res.data.app_dict,
+
+                    room: res.data.room_dict,
+                    messageList: res.data.message_list,
+                    isTeacher: res.data.is_teacher,
+                })
+                GP.jmInit() //IM登陆  
+            },
+        })
+    },
+    jmInit(){
+        if (APP.globalData.JMessage == null)
             GP.onInitIMStudent()
         else
             JMessage = APP.globalData.JMessage
     },
+
+
 
     onInitIMStudent() {
         //已经登陆以后，就不用再登陆了
@@ -73,13 +98,13 @@ Page({
         JMessage.JIM.enterChatroom({
             'id': GP.data.imRoomID
         }).onSuccess(function (data) {
-            console.log("进入成功", data)
+            // console.log("进入成功", data)
         }).onFail(function (data) {
-            console.log("进入失败", data)
+            // console.log("进入失败", data)
         });
         // !! 聊天室信息监控
         JMessage.JIM.onRoomMsg(function (data) {
-            console.log(data)
+            // console.log(data)
             // APP.globalData.onRoomMessage(data)
             Script.listenMessage(
                 data.content.msg_body.extras.nickname,
@@ -93,29 +118,10 @@ Page({
 
 
 
-    //获取当前房间参数
-    getCurrentRoom(){
-        API.Request({
-        url: API.ROOM_GET,
-        success:function(res){
-            console.log(res.data)
-            GP.setData({
-                imRoomID: res.data.app_dict.im_num,
-                appDict: res.data.app_dict,
-                
-                room: res.data.room_dict,
-                messageList: res.data.message_list,
-                isTeacher: res.data.is_teacher,
-            })
-            // GP.jmInit() //IM登陆  
-        },
-        })
-    },
-
 
   //点击发送按钮事件
   sendMsg(e) {
-    console.log(e)
+    // console.log(e)
     //给自己发送信息
     Script.listenMessage(
       GP.data.userInfo.nick_name,
@@ -137,7 +143,7 @@ Page({
         "content": e.detail,
       },
       success: function (res) {
-        console.log("存储消息成功")
+        // console.log("存储消息成功")
       },
     })
   },
@@ -157,9 +163,9 @@ Page({
           'content': content,
           'extras': extras
       }).onSuccess(function (data, msg) {
-          console.log(data)
+        //   console.log(data)
       }).onFail(function (data) {
-          console.log(data)
+        //   console.log(data)
       });
   },
 

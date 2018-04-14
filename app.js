@@ -29,6 +29,7 @@ App({
         jim: null,
         jimRoomID: '12510285' ,
         jimIsLogin:false,
+        JMessage:null,
     },
 
 

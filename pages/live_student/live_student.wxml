@@ -2,12 +2,12 @@
 
 <view wx:if="{{!isTeacher}}">
     <view >
-        <xx-live-player 
+         <xx-live-player 
             feedback="{{feedback}}"  
             src="{{appDict.player_url}}" 
             height="400rpx"
         >
-        </xx-live-player> 
+        </xx-live-player>  
 
         <xx-im 
             message="{{messageList}}" 
